@@ -1,4 +1,3 @@
-var request = require('request');
 var express = require('express');
 var cors = require('cors');
 
@@ -26,5 +25,5 @@ app.use(express.static(__dirname + '/public'));
 
 var server = app.listen(CONFIG.PORT, () => {
 	var port = server.address().port;
-	console.log('VICIQLOUD listening at port %s', CONFIG.PORT);
+	console.log('VQ-LABS listening at port %s', CONFIG.PORT);
 });

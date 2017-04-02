@@ -1,5 +1,5 @@
 {
-  "name": "viciqloud-www",
+  "name": "vq-labs",
   "version": "1.0.0",
   "description": "Web page content for the vq-labs.com",
   "main": "app.js",
@@ -12,8 +12,6 @@
     "express-ejs-layouts": "~2.0.0",
     "express-minify": "~0.2.0",
     "gulp-ejs": "^2.3.0",
-    "mandrill-api": "^1.0.45",
-    "request": "~2.67.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
@@ -23,13 +21,13 @@
     "gulp-replace": "^0.5.4"
   },
   "scripts": {
-    "start": "node app-viciqloud.js",
+    "start": "gulp build && node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/adrianbarwicki/viciqloud.com"
   },
-  "author": "Adrian Barwicki",
+  "author": "Adrian Barwicki (adrianbarwicki@gmail.com)",
   "license": "Apache License 2.0"
 }
