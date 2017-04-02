@@ -1,0 +1,29 @@
+'use strict';
+
+const gulp = require('gulp');
+const htmlmin = require('gulp-htmlmin');
+const replace = require('gulp-replace');
+const spawn = require('child_process').spawn;
+
+gulp.task('build', function() {
+  return gulp.src([ 'src/**/*.html' ])
+    .pipe(htmlmin({ collapseWhitespace: true }))
+    .pipe(gulp.dest('public'))
+})
+
+gulp.task('deploy', [ 'build' ], function() {
+    const args = [ './**', '--region', 'eu-central-1', '--bucket', 'viciqloud.com', '--gzip' ];
+    const npm = spawn("s3-deploy", args, { cwd: './public' });
+
+    npm.stdout.on('data', data => {
+        console.log(`stdout: ${data}`);
+    });
+
+    npm.stderr.on('data', data => {
+        console.log(`stderr: ${data}`);
+    });
+
+    npm.on('close', code => {
+        console.log(code !== 0 ? 'error in build' : 0);
+    });
+});
