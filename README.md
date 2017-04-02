@@ -10,9 +10,9 @@ Images, css and other files that do not require pre-processing you will find in 
 
 # How to start?
 ```
-git clone https://github.com/adrianbarwicki/vq-labs.com
+git clone https://github.com/adrianbarwicki/vq-labs.com 
 
-cd vq-labs
+cd vq-labs.com
 
 npm install
 
