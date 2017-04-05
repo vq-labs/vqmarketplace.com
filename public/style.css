@@ -61,6 +61,7 @@ section {
 
   .vq-intro {
 	  margin-top: 80px;
+	
   }
 
   .vq-impressum {
@@ -68,8 +69,40 @@ section {
   }
 }
 
+a.link:hover {color:#3498DB;}
 
 
+.home-container  {
+	 height:500px;
+}
 
+.button {
+    background-color: #3498DB; 
+    border: 2px solid #ffffff;
+    color: white;
+    padding: 10px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+	border-radius: 4px;
+}
+
+.button {
+	-webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+.button:hover {
+    background-color: #ffffff; 
+    color:  #3498DB;
+	border: #ffffff;
+	text-decoration: none;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 1em;
+}
 
 
