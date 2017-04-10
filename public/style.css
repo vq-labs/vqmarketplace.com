@@ -67,9 +67,6 @@ section {
   .vq-impressum {
 	  margin-top: 80px; 
   }
-}
-
-a.link:hover {color:#3498DB;}
 
 
 .home-container  {
@@ -77,9 +74,9 @@ a.link:hover {color:#3498DB;}
 }
 
 .button {
-    background-color: #3498DB; 
+    background-color: #ffffff; 
     border: 2px solid #ffffff;
-    color: white;
+    color: #1A5276;
     padding: 10px 22px;
     text-align: center;
     text-decoration: none;
@@ -94,15 +91,12 @@ a.link:hover {color:#3498DB;}
 }
 
 .button:hover {
-    background-color: #ffffff; 
-    color:  #3498DB;
+    background-color: #1A5276; 
+    color:  #ffffff;
 	border: #ffffff;
 	text-decoration: none;
 }
 
-table {
-    border-collapse: separate;
-    border-spacing: 0 1em;
-}
+
 
 
