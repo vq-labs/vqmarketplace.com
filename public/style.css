@@ -74,9 +74,9 @@ section {
 }
 
 .button {
-    background-color: #ffffff; 
-    border: 2px solid #ffffff;
-    color: #1A5276;
+    background-color: #1A5276; 
+    border: 2px solid #1A5276;
+    color: #ffffff;
     padding: 10px 22px;
     text-align: center;
     text-decoration: none;
@@ -91,12 +91,11 @@ section {
 }
 
 .button:hover {
-    background-color: #1A5276; 
-    color:  #ffffff;
-	border: #ffffff;
+    background-color: #ffffff; 
+    color:  #1A5276;
+	border: #1A5276;
 	text-decoration: none;
 }
-
 
 
 
