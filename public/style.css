@@ -4,6 +4,7 @@
 										COMMON STYLES
 -----------------------------------------------------------------------------------------*/
 
+
 body {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
@@ -11,6 +12,7 @@ body {
 	color: #777;
 	line-height: 1.6;
 	text-align: center;
+	height: 100%;
 }
 
 h1 {
@@ -67,9 +69,6 @@ section {
   .vq-impressum {
 	  margin-top: 80px; 
   }
-}
-
-a.link:hover {color:#3498DB;}
 
 
 .home-container  {
@@ -77,9 +76,9 @@ a.link:hover {color:#3498DB;}
 }
 
 .button {
-    background-color: #3498DB; 
-    border: 2px solid #ffffff;
-    color: white;
+    background-color: #1A5276; 
+    border: 2px solid #1A5276;
+    color: #ffffff;
     padding: 10px 22px;
     text-align: center;
     text-decoration: none;
@@ -95,14 +94,15 @@ a.link:hover {color:#3498DB;}
 
 .button:hover {
     background-color: #ffffff; 
-    color:  #3498DB;
-	border: #ffffff;
+    color:  #1A5276;
+	border: #1A5276;
 	text-decoration: none;
 }
 
-table {
-    border-collapse: separate;
-    border-spacing: 0 1em;
+.footer  {
+	background-color:#212F3C;
 }
 
-
+.wrap {
+min-height: calc(100vh - 160px);
+  }
