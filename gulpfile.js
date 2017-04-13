@@ -17,7 +17,7 @@ gulp.task('build', function() {
 })
 
 gulp.task('deploy', [ 'build' ], function() {
-    const args = [ './**', '--region', 'eu-central-1', '--bucket', 'viciqloud.com', '--gzip' ];
+    const args = [ './**', '--region', 'eu-central-1', '--bucket', 'vq-labs.com', '--gzip' ];
     const npm = spawn("s3-deploy", args, { cwd: './public' });
 
     npm.stdout.on('data', data => {
