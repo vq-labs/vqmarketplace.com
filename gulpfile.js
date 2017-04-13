@@ -4,9 +4,14 @@ const gulp = require('gulp');
 const htmlmin = require('gulp-htmlmin');
 const replace = require('gulp-replace');
 const spawn = require('child_process').spawn;
+const fileinclude = require('gulp-file-include');
 
 gulp.task('build', function() {
   return gulp.src([ 'src/**/*.html' ])
+    .pipe(fileinclude({
+      prefix: '@@',
+      basepath: '@file'
+    }))
     .pipe(htmlmin({ collapseWhitespace: true }))
     .pipe(gulp.dest('public'))
 })

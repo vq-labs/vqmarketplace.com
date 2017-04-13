@@ -11,7 +11,8 @@
     "express": "~4.13.4",
     "express-ejs-layouts": "~2.0.0",
     "express-minify": "~0.2.0",
-    "gulp-ejs": "^2.3.0"
+    "gulp-ejs": "^2.3.0",
+    "gulp-file-include": "^1.1.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
