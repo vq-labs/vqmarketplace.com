@@ -99,10 +99,6 @@ section {
 	text-decoration: none;
 }
 
-.footer  {
-	background-color:#212F3C;
-}
-
 .wrap {
 min-height: calc(100vh - 160px);
   }
