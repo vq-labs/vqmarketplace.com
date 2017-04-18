@@ -73,6 +73,14 @@ section {
 
 .home-container  {
 	 height:500px;
+  }
+}
+
+.footer{
+	padding-top:30px;
+	margin-top:20px;
+	background-color:#212F3C;
+
 }
 
 .button {
@@ -85,9 +93,6 @@ section {
     display: inline-block;
     font-size: 16px;
 	border-radius: 4px;
-}
-
-.button {
 	-webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
 }
