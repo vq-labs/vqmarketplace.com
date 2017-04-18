@@ -41,7 +41,6 @@ section {
 	overflow: hidden;
 }
 
-
 @media (max-width: 600px) {
   h1 {
     font-size: 30px;
@@ -57,30 +56,27 @@ section {
 }
 
 @media (min-width: 600px) {
-  h1 {
-   font-size: 60px;
-  }
+	h1 {
+	font-size: 60px;
+	}
 
-  .vq-intro {
-	  margin-top: 80px;
-	
-  }
+	.vq-intro {
+		margin-top: 80px;
+		
+	}
 
-  .vq-impressum {
-	  margin-top: 80px; 
-  }
-
-
-.home-container  {
-	 height:500px;
-  }
+	.vq-impressum {
+		margin-top: 80px; 
+	}
+	.home-container  {
+		height:500px;
+	}
 }
 
-.footer{
+.footer {
 	padding-top:30px;
 	margin-top:20px;
 	background-color:#212F3C;
-
 }
 
 .button {
@@ -105,5 +101,5 @@ section {
 }
 
 .wrap {
-min-height: calc(100vh - 160px);
-  }
+	min-height: calc(100vh - 160px);
+}
