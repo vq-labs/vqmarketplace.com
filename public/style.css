@@ -7,7 +7,7 @@
 
 body {
 	font-family: 'Open Sans', sans-serif;
-	font-size: 16px;
+	font-size: 15px;
 	font-weight: 100;
 	color: #777;
 	line-height: 1.6;
@@ -77,6 +77,10 @@ section {
 	padding-top:30px;
 	margin-top:20px;
 	background-color:#212F3C;
+}
+
+.header {
+	position:fixed;
 }
 
 .button {
