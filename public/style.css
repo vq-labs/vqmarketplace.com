@@ -83,24 +83,45 @@ section {
 	position:fixed;
 }
 
-.button {
-    background-color: #1A5276; 
-    border: 2px solid #1A5276;
+.header-button {
+    background-color: #transparent; 
+    border: 2px solid #ffffff;
     color: #ffffff;
     padding: 10px 22px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-	border-radius: 4px;
+	border-radius: 2px;
+	-webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+.header-button:hover {
+    background-color: #ffffff; 
+    color:  #1A5276;
+	border: #1A5276;
+	text-decoration: none;
+}
+
+.button {
+    background-color: #transparent; 
+    border: 2px solid #1A5276;
+    color: #1A5276;
+    padding: 10px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+	border-radius: 2px;
 	-webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
 }
 
 .button:hover {
-    background-color: #ffffff; 
-    color:  #1A5276;
-	border: #1A5276;
+    background-color: #1A5276; 
+    color:  #ffffff;
+	border: #ffffff;
 	text-decoration: none;
 }
 
