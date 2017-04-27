@@ -39,19 +39,17 @@
 		<body>
 		  <div class="wrap">
 			@@include('../header.html')
-
-		<div class="container-fluid vq-intro" style="margin-top:0px;padding-top:70px;padding-bottom:40px;background-color:#1A5276;">
-			<div class="row text-center">
-				<div class="col-xs-12">
+		<div class="container-fluid vq-intro" style="padding-left:0; padding-right:0; margin-top:0px; height:300px;">
+            <div id="particle-canvas" style="width:100%; min-height:300px; height:100%;"></div>
+			<div class="text-center" style="position:absolute;width: 100%; z-index:30; top:0;">
+				<div style="margin-top: 120px;">
 					<h1 class="slogan" style="color:#ffffff;">VQ Marketplace</h1>
-					<hr>
 					<p style="color:#ffffff;">
-						VQ-Labs allows buyers and sellers to interact in a platform with minimum effort. 
-
+						VQ Marketplace allows buyers and sellers to interact in a platform with minimum effort
 					</p>
 				</div>
 			</div>
-		</div>
+		</div>	
 			
 		<div class="container-fluid" style="margin-top:20px;margin-bottom:30px;">		
 			<div class="row">
@@ -76,8 +74,11 @@
 			</div>
 		  </div>
         </div>
-		 
+
+		@@include('../partners.html')
 		@@include('../footer.html')
+
+		<script type="text/javascript" src="/particle.min.js"></script>
 	</body>
 </html>
 
