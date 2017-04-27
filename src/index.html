@@ -29,52 +29,34 @@
 			ga('send', 'pageview');
 		</script>
 		<!-- End Google Analytics -->
-
-
-		<style>
-			.vq-welcome {
-				background: url(images/stores.jpg) no-repeat center center fixed; 
-				-webkit-background-size: cover;
-				-moz-background-size: cover;
-				-o-background-size: cover;
-				background-size: cover;
-			}
-
-			.vq-half-transparent {
-			background: rgba(70, 72, 82, 0.4)
-			}
-
- 		</style>
-
-		<link rel="stylesheet" href="/bootstrap.min.css">
-		<link rel="stylesheet" href="/style.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link rel="icon" href="/favicon.png">
+		@@include('./styles.html')
 	</head>
 
-		<body>
+	<body>
 		  <div class="wrap">	
 			@@include('./header.html')
 
-		<div class="vq-welcome" style="height:500px;">
-			<div class="vq-half-transparent" style="position:relative;left:0; z-index: 1; width:100%; height:100%; overflow:hidden;">
-					<div class="row text-center" style="position:relative;margin-top:120px;">
-							<div class="col-xs-12">        
-								<h1 class="slogan" style="color:#ffffff;">Smart<br />Marketplace<br />Technologies</h1>
-
-							</div>	
-							<div class="col-xs-10 col-xs-offset-1">  
-							
-							</div>
+			<div class="container-fluid vq-intro" style="padding-left:0; padding-right:0; margin-top:0px; height:300px;">
+				<div id="particle-canvas" style="width:100%; min-height:300px; height:100%;"></div>
+				<div class="text-center" style="position:absolute; width: 100%; z-index:30; top:0;">
+					<div class="row" style="margin-top: 80px;">
+						<h1 class="slogan" style="color:#ffffff;">Smart Marketplace Technologies</h1>
 					</div>
-				<div class="row " style="padding-top:80px;">	
-					<div class="-xs col s12 center-align">  
-						<a href="/marketplace" class="header-button">Learn more</a>
+					<div class="row" style="margin-top:50px;">	
+						<div class="col-sm-3"></div>
+						<div class="col-sm-2 col-xs-12 center-align">  
+							<a href="/marketplace" class="header-button">Marketplace AI</a>
+						</div>
+						<div class="col-sm-2 col-xs-12 center-align">  
+							<a href="/marketplace" class="header-button">Marketplace Client</a>
+						</div>
+						<div class="col-sm-2 col-xs-12 center-align">  
+							<a href="/marketplace" class="header-button">Marketplace API</a>
+						</div>
+					</div>	
 				</div>
-				</div>	
 			</div>
-		</div> 	
-				
+
 		  <div class="container-fluid" style="padding-top:10px;padding-bottom:10px;">
 			<div class="row">
 				<h2 style="padding-bottom:20px;">Boost your sales with VQ-Marketplace</h2>
@@ -177,6 +159,7 @@
 
 		@@include('./partners.html')
 		@@include('./footer.html')
+		@@include('./custom-code.html')
 	</body>
 </html>
 

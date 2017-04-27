@@ -3,7 +3,10 @@
 /*----------------------------------------------------------------------------------------
 										COMMON STYLES
 -----------------------------------------------------------------------------------------*/
-
+/* Angular Material overwrites */
+.md-open-menu-container {
+    z-index: 9999 !important;
+}
 
 body {
 	font-family: 'Open Sans', sans-serif;

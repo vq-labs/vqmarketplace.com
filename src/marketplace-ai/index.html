@@ -30,29 +30,27 @@
 		</script>
 		<!-- End Google Analytics -->
         
-		<link rel="stylesheet" href="/bootstrap.min.css">
-		<link rel="stylesheet" href="/style.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link rel="icon" href="/favicon.png">	
+		@@include('../styles.html')
 	</head>
 
 		<body>
 		  <div class="wrap">
 			@@include('../header.html')
         
+         
+							
 		<div class="container-fluid vq-intro" style="padding-left:0; padding-right:0; margin-top:0px; height:300px;">
             <div id="particle-canvas" style="width:100%; min-height:300px; height:100%;"></div>
 			<div class="text-center" style="position:absolute;width: 100%; z-index:30; top:0;">
 				<div style="margin-top: 120px;">
 					<h1 class="slogan" style="color:#ffffff;">Marketplace AI</h1>
-					
 					<p style="color:#ffffff;">
 						VQ Marketplace AI learns your users' behaviour and recommends personalized items for your users, or vice versa.
 					</p>
 				</div>
 			</div>
-		</div>
-			
+		</div>				
+
 		<div class="container-fluid" style="margin-top:20px; margin-bottom:30px;">		
 			<div class="row">
 				<h2 style="padding-bottom:10px;">Smart Marketplace</h2>
@@ -125,8 +123,7 @@ Being able to find which users are similar to each other could benefit your user
 
         @@include('../partners.html')
 		@@include('../footer.html')
-
-        <script type="text/javascript" src="/particle.min.js"></script>
+        @@include('../custom-code.html')
 	</body>
 </html>
 
