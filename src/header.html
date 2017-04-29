@@ -1,13 +1,46 @@
-<nav ng-app="vqHeader" ng-controller="HeaderCtrl as header" class="navbar navbar-default navbar-fixed-top" style="background-color:#ffffff;">
+<div ng-app="vqHeader" ng-controller="HeaderCtrl as header">
+
+<md-sidenav class="md-sidenav-right" md-component-id="right" md-disable-backdrop md-whiteframe="4">
+    <md-content style="margin-top:40px;">
+          <div flex>
+            <a href="/"><h4>Home</h4></a>
+          </div>
+          <div flex>
+            <a href="/marketplace-ai"><h4>Marketplace AI</h4></a>
+          </div>
+          <div flex>
+            <a href="/marketplace"><h4>Marketplace Client</h4></a>
+          </div>
+          <div flex>
+            <a href="/marketplace"><h4>Marketplace Platform</h4></a>
+          </div>
+          <div flex>
+            <a href="/contact"><h4>Contact</h4></a>
+          </div>
+          <div flex>
+            <a href="/impressum"><h4>Imprint</h4></a>
+          </div>
+     </md-content>   
+</md-sidenav>
+
+<nav class="navbar navbar-default navbar-fixed-top" style="background-color:#ffffff;">
     <div class="container-fluid">
         <div class="navbar-header">
-        <a class="navbar-brand" class="active" href="/">
-            <img style="padding: 5px; padding-top:0px; height: 40px;" class="visible-xs" src="/vq-labs-logo-xs-2.png"/>
-            <img style="padding: 5px; padding-top:0px; height: 35px;" class="hidden-xs" src="/vq-labs-logo.png"/>
-        </a>
+            <a class="navbar-brand" class="active" href="/">
+                <img style="padding: 5px; padding-top:0px; height: 40px;" class="visible-xs" src="/vq-labs-logo-xs-2.png"/>
+                <img style="padding: 5px; padding-top:0px; height: 35px;" class="hidden-xs" src="/vq-labs-logo.png"/>
+            </a>
+
+            <button type="button" class="navbar-toggle collapsed pull-right" ng-click="header.toggle()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
         </div>
+
         <div id="navbar" class="navbar-collapse collapse">
-             
+            
             <ul class="nav navbar-nav navbar-right">
                 <li>
                         <md-menu ng-cloak>
@@ -91,7 +124,11 @@
                             </md-menu-item>
                             <md-menu-item>
                                 <md-button>
+
                                     <a href="/imprint">
+
+                                    <a href="/contact">
+
                                         <div layout="row" flex>
                                             <p flex>Imprint</p>
                                         </div>
@@ -106,3 +143,4 @@
     </div>
 </nav>
 
+</div>
