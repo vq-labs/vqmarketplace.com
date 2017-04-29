@@ -28,8 +28,118 @@
 			ga('create', 'UA-71873199-1', 'auto');
 			ga('send', 'pageview');
 		</script>
+
 		<!-- End Google Analytics -->
-        
+
+        <style>
+ul{
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
+  -webkit-padding-start: 0;
+}
+
+.container {
+  margin: 20px auto;
+  padding-top:20px;
+  padding-bottom:40px;
+}
+
+.price-wrapp{
+  position:relative;
+  width:100%;
+  padding:40px;
+  color:#adadad;
+  border-radius:5px;
+  transition: all 250ms ease;
+}
+.price-wrapp:hover{
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
+  color:#444;
+  left:0;
+}
+.price-header{
+  color:rgb(26, 82, 118);
+  border-bottom:1px solid #ddd;
+  position:relative;
+}
+.price-header::after{
+  content:'';
+  position:absolute;
+  display:inline-block;
+  bottom:-2px;
+  width:0;
+  height:4px;
+  background:#FF4081;
+  transition: all 250ms ease;
+}
+ .price-wrapp:hover  .price-header::after{
+  width:100%;
+  left:0;
+}
+.price-header .type{
+  display:block;
+  text-transform:uppercase;
+  font-size:18px;
+  margin:0px 0px 10px 0px;
+}
+.prices{
+  margin:10px 0;
+  text-align:center;
+}
+.price-wrapp .price{
+  display:inline-block;
+  text-transform:uppercase;
+  font-size:36px;
+  font-weight:bold;
+}
+
+.price-body{
+  margin:20px 0 0 0;
+}
+
+.price-body ul li{
+  list-style:none;
+  webkit-padding-start:0
+}
+
+.wsk-btn{
+  padding:10px;
+  width:100%;
+  border-bottom-left-radius:5px;
+  border-bottom-right-radius:5px;
+  border:0;
+  box-shadow:none;
+  transition: all 100ms ease;
+}
+.wsk-btn:hover{
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
+  font-size:1.25em;
+}
+.price-footer{
+  position:absolute;
+  text-align:center;
+  bottom:-55px;
+  margin:0 auto;
+  left:0;
+  right:0;
+  padding:20px 0 ;
+}
+
+.wsk-btn.red{
+  background:rgb(26, 82, 118);
+  color:#fff;
+}
+.equal, .equal > div[class*='col-'] {  
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  flex:1 0 auto;
+}
+
+            </style>
+
 		@@include('../styles.html')
 	</head>
 
@@ -43,7 +153,7 @@
             <div id="particle-canvas" style="width:100%; min-height:300px; height:100%;"></div>
 			<div class="text-center" style="position:absolute;width: 100%; z-index:30; top:0;">
 				<div style="margin-top: 120px;">
-					<h1 class="slogan" style="color:#ffffff;">Marketplace AI</h1>
+					<h1 class="title" style="color:#ffffff;">Marketplace AI</h1>
 					<p style="color:#ffffff;">
 						VQ Marketplace AI learns your users' behaviour and recommends personalized products to your users, or vice versa.
 					</p>
@@ -53,7 +163,7 @@
 
 		<div class="container-fluid" style="margin-top:20px; margin-bottom:30px;">		
 			<div class="row">
-				<h2 style="padding-bottom:10px;">Smart Marketplace</h2>
+				<h2 class="title" style="padding-bottom:10px;">Smart Marketplace</h2>
 				<p style="padding-bottom:20px;">We integrate Artifical Intelligence / Machine Learning algorithms to boost your business.</p>
 				<div class="col-xs-12 col-sm-4 col-md-3">			
 						<i class="fa fa-cog fa-2x" aria-hidden="true"></i>
@@ -89,31 +199,33 @@ Being able to find which users are similar to each other could benefit your user
         <div class="container-fluid" style="margin-top:20px;margin-bottom:30px;">		
 			<div class="row">
 				<h2 style="padding-bottom:10px;">How it works?</h2>
-				<p style="padding-bottom:20px;">Once set up, interaction of your users with recommendations will lead to more user engagement, better customer retention, and more revenue. It will only get better with time as VQ Marketplace AI understands your application's patterns better.</p>
+				<p style="padding-bottom:20px;">
+                    Once set up, interaction of your users with recommendations will lead to more user engagement, better customer retention, and more revenue. It will only get better with time as VQ Marketplace AI understands your application's patterns better.
+                </p>
 				<div class="col-xs-12 col-sm-4 col-md-3">			
 						<i class="fa fa-cog fa-2x" aria-hidden="true"></i>
-						 <p style="padding-top:10px;"><b>Integrate</b></p><br>
-                         <p>
-                             Sign up for VQ Marketplace Intelligence and use its APIs in your application. Start sending your user's actions that you'll ask for recommendations later.
+						 <p style="padding-top:10px;"><b>Integrate and track</b></p>
+                         <p style="padding-top:10px;">
+                             Integrate VQ Marketplace Intelligence and use its APIs in your application. Start sending your user's actions like product views, rates and interactions to train our smart machine learning models.
                          </p>
 						
 				</div>
 				<div class="col-xs-12 col-sm-4 col-md-3">	
 						<i class="fa fa-sitemap fa-2x" aria-hidden="true"></i>
-						 <p style="padding-top:10px;"><b>Learning</b></p><br>
-						<p>VQ Marketplace Intelligence runs its state-of-art scalable machine learning algorithms to learn from your data.</p>
+						<p style="padding-top:10px;"><b>Learning</b></p>
+						<p style="padding-top:10px;">VQ Marketplace Intelligence runs its state-of-art scalable machine learning algorithms to learn from your data.</p>
 				</div>
                 <div class="col-xs-12 col-sm-4 col-md-3">	
 						<i class="fa fa-filter fa-2x" aria-hidden="true"></i>
 						<p style="padding-top:10px;"><b>Display Recommended Content</b></p>
-                        <p>
+                        <p style="padding-top:10px;">
                         Request recommended or similar items (or users) from VQ Marketplace. Our lightning-fast serving layer will respond in miliseconds.
                         </p>
 				</div>
                 <div class="col-xs-12 col-sm-4 col-md-3">	
 						<i class="fa fa-filter fa-2x" aria-hidden="true"></i>
 						<p style="padding-top:10px;"><b>Find similiar products</b></p>
-                        <p>
+                        <p style="padding-top:10px;">
                             You may promote similar items on item pages for your users. Since they're already visiting an item, they could be more likely to see other items that similar users also visit. You can also use this feature to predict tags or categories for your items.
                         </p>
 				</div>
@@ -128,6 +240,98 @@ Being able to find which users are similar to each other could benefit your user
                 </p>
 		  </div>
         </div>
+
+
+<div class="container">
+ <div class="row">
+   <div class="col-md-12">
+     <div class="title text-center">
+       <h2><b>Marketplace AI</b> Pricing</h2>
+     </div>
+   </div>
+ </div>
+  <div class="row equal">
+    <div class="col-md-4">
+     <div class="price-wrapp">
+       <div class="price-header">
+        <span class="type">Base</span>
+         <div class="prices">
+           <span class="price">500</span>
+           <sub class="period">€/Month</sub>
+         </div>
+       </div>
+       <div class="price-body">
+         <ul>
+           <li>Full API functionality</li>
+           <li>Cloud-Based solution</li>
+           <li>Support in business hours</li>
+           <li><b>1MM</b> recommendation requests/month</li>
+           <li><b>10MM</b> action tracking requests/month</li>
+         </ul>
+       </div>
+       <div class="price-footer">
+           <a href="/contact">
+            <button class="wsk-btn red">Contact us</button>
+           </a>
+       </div>
+     </div>
+    </div>
+    
+    <div class="col-md-4">
+     <div class="price-wrapp">
+       <div class="price-header">
+        <span class="type">Premium</span>
+         <div class="prices">
+           <span class="price">3500</span>
+           <sub class="period">€/Month</sub>
+         </div>
+       </div>
+       <div class="price-body">
+         <ul>
+           <li>Full API functionality</li>
+           <li>Cloud-Based solution</li>
+           <li>Support 24h</li>
+           <li><b>Unlimited</b> recommendation requests/month</li>
+           <li><b>Unlimited</b> action tracking requests/month</li>
+         </ul>
+       </div>
+       <div class="price-footer">
+           <a href="/contact">
+                <button class="wsk-btn red">Contact us</button>
+           </a>
+       </div>
+     </div>
+    </div>
+    
+    <div class="col-md-4">
+     <div class="price-wrapp">
+       <div class="price-header">
+        <span class="type">Enterprise</span>
+         <div class="prices">
+           <span class="price">Alternative</span>
+         </div>
+       </div>
+       <div class="price-body">
+         <ul>
+           <li>Free integration and consultation</li>
+           <li>Additional-profit-based pricing</li>
+           <li>Full API functionality</li>
+           <li>Private cloud solution</li>
+           <li>Support 24h</li>
+           <li><b>Unlimited</b> recommendation requests/month</li>
+           <li><b>Unlimited</b> action tracking requests/month</li>
+         </ul>
+       </div>
+       <div class="price-footer">
+            <a href="/contact">
+                <button class="wsk-btn red">Contact us</button>
+            </a>
+       </div>
+     </div>
+    </div>
+    
+  </div>
+</div>
 
         @@include('../partners.html')
 		@@include('../footer.html')
