@@ -4,15 +4,21 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 
-
 <script type="text/javascript">    
     angular.module('vqHeader', [ 'ngMaterial' ])
-    .controller('HeaderCtrl', function($mdDialog) {
+    .controller('HeaderCtrl', [ '$mdDialog', '$timeout', '$mdSidenav', function($mdDialog, $timeout, $mdSidenav) {
+            this.toggle = buildToggler('right');
             this.openMenu = function($mdOpenMenu, ev) {
                 originatorEv = ev;
                 $mdOpenMenu(ev);
             };
-    });
+
+            function buildToggler(componentId) {
+               return function() {
+                    $mdSidenav(componentId).toggle();
+                };
+            }
+    }]);
 </script>
 
  <script type="text/javascript" src="/particle.min.js"></script>
