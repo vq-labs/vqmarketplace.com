@@ -134,18 +134,18 @@
 
 		<body>
 		  <div class="wrap">
-			@@include('../header.html')
+		  	@@include('../header.html')
 				
         <div class="container-fluid vq-intro" style="padding-left:0; padding-right:0; margin-top:0px; height:300px;">
-                <div id="particle-canvas" style="width:100%; min-height:300px; height:100%;"></div>
-          <div class="text-center" style="position:absolute;width: 100%; z-index:30; top:0;">
-            <div style="margin-top: 120px;">
-              <h1 class="title" style="color:#ffffff;">Marketplace AI</h1>
-              <p style="color:#ffffff;">
-                VQ Marketplace AI learns your users' behaviour and recommends personalized products to your users, or vice versa.
-              </p>
-            </div>
-          </div>
+              <div id="particle-canvas" style="width:100%; min-height:300px; height:100%;"></div>
+              <div class="text-center" style="position:absolute;width: 100%; z-index:30; top:0;">
+                  <div style="margin-top: 120px;">
+                    <h1 class="title" style="color:#ffffff;">Marketplace AI</h1>
+                    <p style="color:#ffffff;">
+                      VQ Marketplace AI learns your users' behaviour and recommends personalized products to your users, or vice versa.
+                    </p>
+                  </div>
+              </div>
         </div>			
 
         @@include('./partials/product.html')
@@ -153,11 +153,13 @@
         @@include('./partials/reasons.html')
         @@include('./partials/pricing.html')
         @@include('./partials/architecture.html')
-
-
         @@include('../partners.html')
-		    @@include('../footer.html')
-        @@include('../custom-code.html')
-	</body>
+
+      </div>
+
+      @@include('../footer.html')
+      @@include('../custom-code.html')
+	
+  </body>
 </html>
 
