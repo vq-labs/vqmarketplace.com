@@ -136,192 +136,27 @@
 		  <div class="wrap">
 			@@include('../header.html')
 				
-		<div class="container-fluid vq-intro" style="padding-left:0; padding-right:0; margin-top:0px; height:300px;">
-            <div id="particle-canvas" style="width:100%; min-height:300px; height:100%;"></div>
-			<div class="text-center" style="position:absolute;width: 100%; z-index:30; top:0;">
-				<div style="margin-top: 120px;">
-					<h1 class="title" style="color:#ffffff;">Marketplace AI</h1>
-					<p style="color:#ffffff;">
-						VQ Marketplace AI learns your users' behaviour and recommends personalized products to your users, or vice versa.
-					</p>
-				</div>
-			</div>
-		</div>				
+        <div class="container-fluid vq-intro" style="padding-left:0; padding-right:0; margin-top:0px; height:300px;">
+                <div id="particle-canvas" style="width:100%; min-height:300px; height:100%;"></div>
+          <div class="text-center" style="position:absolute;width: 100%; z-index:30; top:0;">
+            <div style="margin-top: 120px;">
+              <h1 class="title" style="color:#ffffff;">Marketplace AI</h1>
+              <p style="color:#ffffff;">
+                VQ Marketplace AI learns your users' behaviour and recommends personalized products to your users, or vice versa.
+              </p>
+            </div>
+          </div>
+        </div>			
 
-		<div class="container-fluid" style="margin-top:20px; margin-bottom:30px;">		
-			<div class="row">
-				<h2 class="title" style="padding-bottom:10px;">Smart Marketplace</h2>
-				<p style="padding-bottom:20px;">We integrate Artifical Intelligence / Machine Learning algorithms to boost your business.</p>
-				<div class="col-xs-12 col-sm-4 col-md-3">			
-						<i class="fa fa-cog fa-2x" aria-hidden="true"></i>
-						 <p style="padding-top:10px;"><b>Recommended items for users</b></p><br>
-                         <p>
-                             You can use VQ-Marketplace AI to display recommended items for your users. Displaying recommended items can help tremedously in user engagement and retention.
-                         </p>
-						
-				</div>
-				<div class="col-xs-12 col-sm-4 col-md-3">	
-						<i class="fa fa-sitemap fa-2x" aria-hidden="true"></i>
-						 <p style="padding-top:10px;"><b>Recommended users for products</b></p><br>
-						<p>If you've a new item or a group of items or a campaign, you can use VQ Marketplace AI to target users for these items. This way you can present interesting content to some of your users while not bothering the rest of them.</p>
-				</div>
-                <div class="col-xs-12 col-sm-4 col-md-3">	
-						<i class="fa fa-filter fa-2x" aria-hidden="true"></i>
-						<p style="padding-top:10px;"><b>Find similiar users</b></p>
-                        <p>
-Being able to find which users are similar to each other could benefit your users significantly when they are able to find other likeminded users. Personal connections made in your platform would help you with increasing loyalty.
-                        </p>
-				</div>
-                <div class="col-xs-12 col-sm-4 col-md-3">	
-						<i class="fa fa-filter fa-2x" aria-hidden="true"></i>
-						<p style="padding-top:10px;"><b>Find similiar products</b></p>
-                        <p>
-                            You may promote similar items on item pages for your users. Since they're already visiting an item, they could be more likely to see other items that similar users also visit. You can also use this feature to predict tags or categories for your items.
-                        </p>
-				</div>
-			</div>
-		  </div>
-        </div>
-		 
-        <div class="container-fluid" style="margin-top:20px;margin-bottom:30px;">		
-			<div class="row">
-				<h2 style="padding-bottom:10px;">How it works?</h2>
-				<p style="padding-bottom:20px;">
-                    Once set up, interaction of your users with recommendations will lead to more user engagement, better customer retention, and more revenue. It will only get better with time as VQ Marketplace AI understands your application's patterns better.
-                </p>
-				<div class="col-xs-12 col-sm-4 col-md-3">			
-						<i class="fa fa-cog fa-2x" aria-hidden="true"></i>
-						 <p style="padding-top:10px;"><b>Integrate and track</b></p>
-                         <p style="padding-top:10px;">
-                             Integrate VQ Marketplace Intelligence and use its APIs in your application. Start sending your user's actions like product views, rates and interactions to train our smart machine learning models.
-                         </p>
-						
-				</div>
-				<div class="col-xs-12 col-sm-4 col-md-3">	
-						<i class="fa fa-sitemap fa-2x" aria-hidden="true"></i>
-						<p style="padding-top:10px;"><b>Learning</b></p>
-						<p style="padding-top:10px;">VQ Marketplace Intelligence runs its state-of-art scalable machine learning algorithms to learn from your data.</p>
-				</div>
-                <div class="col-xs-12 col-sm-4 col-md-3">	
-						<i class="fa fa-filter fa-2x" aria-hidden="true"></i>
-						<p style="padding-top:10px;"><b>Display Recommended Content</b></p>
-                        <p style="padding-top:10px;">
-                        Request recommended or similar items (or users) from VQ Marketplace. Our lightning-fast serving layer will respond in miliseconds.
-                        </p>
-				</div>
-                <div class="col-xs-12 col-sm-4 col-md-3">	
-						<i class="fa fa-filter fa-2x" aria-hidden="true"></i>
-						<p style="padding-top:10px;"><b>Find similiar products</b></p>
-                        <p style="padding-top:10px;">
-                            You may promote similar items on item pages for your users. Since they're already visiting an item, they could be more likely to see other items that similar users also visit. You can also use this feature to predict tags or categories for your items.
-                        </p>
-				</div>
-		  </div>
-        </div>
+        @@include('./partials/product.html')
+        @@include('./partials/how-it-works.html')
+        @@include('./partials/reasons.html')
+        @@include('./partials/pricing.html')
+        @@include('./partials/architecture.html')
 
-        <div class="container-fluid" style="margin-top:20px;margin-bottom:30px;">		
-			<div class="row">
-				<h2 style="padding-bottom:10px;">Architecture</h2>
-				<p style="padding-bottom:20px;">
-                    VQ Marketplace AI’s application architecture wraps high-performance machine learning and prediction into an innovative, fault-tolerant modern technology stack. The application works in a public cloud using containers for secure and private front-end, computation and internal storage. The enterprise edition is extensible to virtual private clouds and parallelized compute infrastructures.
-                </p>
-		  </div>
-        </div>
-
-
-<div class="container">
- <div class="row">
-   <div class="col-md-12">
-     <div class="title text-center">
-       <h2><b>Marketplace AI</b> Pricing</h2>
-     </div>
-   </div>
- </div>
-  <div class="row equal">
-    <div class="col-md-4">
-     <div class="price-wrapp">
-       <div class="price-header">
-        <span class="type">Base</span>
-         <div class="prices">
-           <span class="price">500</span>
-           <sub class="period">€/Month</sub>
-         </div>
-       </div>
-       <div class="price-body">
-         <ul>
-           <li>Full API functionality</li>
-           <li>Cloud-Based solution</li>
-           <li>Support in business hours</li>
-           <li><b>1MM</b> recommendation requests/month</li>
-           <li><b>10MM</b> action tracking requests/month</li>
-         </ul>
-       </div>
-       <div class="price-footer">
-           <a href="/contact">
-            <button class="wsk-btn red">Contact us</button>
-           </a>
-       </div>
-     </div>
-    </div>
-    
-    <div class="col-md-4">
-     <div class="price-wrapp">
-       <div class="price-header">
-        <span class="type">Premium</span>
-         <div class="prices">
-           <span class="price">3500</span>
-           <sub class="period">€/Month</sub>
-         </div>
-       </div>
-       <div class="price-body">
-         <ul>
-           <li>Full API functionality</li>
-           <li>Cloud-Based solution</li>
-           <li>Support 24h</li>
-           <li><b>Unlimited</b> recommendation requests/month</li>
-           <li><b>Unlimited</b> action tracking requests/month</li>
-         </ul>
-       </div>
-       <div class="price-footer">
-           <a href="/contact">
-                <button class="wsk-btn red">Contact us</button>
-           </a>
-       </div>
-     </div>
-    </div>
-    
-    <div class="col-md-4">
-     <div class="price-wrapp">
-       <div class="price-header">
-        <span class="type">Enterprise</span>
-         <div class="prices">
-           <span class="price">Alternative</span>
-         </div>
-       </div>
-       <div class="price-body">
-         <ul>
-           <li>Free integration and consultation</li>
-           <li>Additional-profit-based pricing</li>
-           <li>Full API functionality</li>
-           <li>Private cloud solution</li>
-           <li>Support 24h</li>
-           <li><b>Unlimited</b> recommendation requests/month</li>
-           <li><b>Unlimited</b> action tracking requests/month</li>
-         </ul>
-       </div>
-       <div class="price-footer">
-            <a href="/contact">
-                <button class="wsk-btn red">Contact us</button>
-            </a>
-       </div>
-     </div>
-    </div>
-    
-  </div>
-</div>
 
         @@include('../partners.html')
-		@@include('../footer.html')
+		    @@include('../footer.html')
         @@include('../custom-code.html')
 	</body>
 </html>
