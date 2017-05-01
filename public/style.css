@@ -33,9 +33,7 @@ h4 {
 	font-weight: lighter;
 	line-height: 1.2;
 	margin: 30px 0 10px 0;
-
 }
-
 
 section {
 	padding: 50px 0;
@@ -72,16 +70,11 @@ section {
 
   .vq-intro {
 	  margin-top: 70px;
-	
   }
 
   .vq-impressum {
 	  margin-top: 80px; 
   }
-
-	h1 {
-	font-size: 60px;
-	}
 
 	.vq-intro {
 		margin-top: 80px;
@@ -108,7 +101,7 @@ section {
 }
 
 .header-button {
-    background-color: #transparent; 
+    background-color: transparent; 
     border: 2px solid #ffffff;
     color: #ffffff;
     padding: 10px 22px;
@@ -131,7 +124,7 @@ section {
 }
 
 .button {
-    background-color: #transparent; 
+    background-color: transparent; 
     border: 2px solid #1A5276;
     color: #1A5276;
     padding: 10px 22px;
