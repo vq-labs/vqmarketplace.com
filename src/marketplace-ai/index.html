@@ -118,7 +118,8 @@
 
           .wsk-btn.red{
             background:rgb(26, 82, 118);
-            color:#fff;
+            color:#ffffff;
+            font-family: helvetica;
           }
           .equal, .equal > div[class*='col-'] {  
             display: -webkit-box;
@@ -135,25 +136,28 @@
 		<body>
 		  <div class="wrap">
 		  	@@include('../header.html')
-				
+
         <div class="container-fluid vq-intro" style="padding-left:0; padding-right:0; margin-top:0px; height:300px;">
               <div id="particle-canvas" style="width:100%; min-height:300px; height:100%;"></div>
               <div class="text-center" style="position:absolute;width: 100%; z-index:30; top:0;">
                   <div style="margin-top: 120px;">
                     <h1 class="title" style="color:#ffffff;">Marketplace AI</h1>
                     <p style="color:#ffffff;">
-                      VQ Marketplace AI learns your users' behaviour and recommends personalized products to your users, or vice versa.
+                      VQ Marketplace AI learns your customers' behaviour and recommends personalized products to them, or vice versa.
                     </p>
                   </div>
               </div>
         </div>			
 
-        @@include('./partials/product.html')
-        @@include('./partials/how-it-works.html')
         @@include('./partials/reasons.html')
-        @@include('./partials/pricing.html')
+        <hr>
+        @@include('./partials/product.html')
         @@include('./partials/architecture.html')
-        @@include('../partners.html')
+        @@include('./partials/how-it-works.html')
+        <hr>
+        @@include('./partials/pricing.html')
+        <hr>
+        @@include('../brochure.html')
 
       </div>
 
