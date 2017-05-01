@@ -121,11 +121,19 @@
             color:#ffffff;
             font-family: helvetica;
           }
-          .equal, .equal > div[class*='col-'] {  
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: flex;
-            flex:1 0 auto;
+          /* Only Small Devices, Phones */ 
+          @media (min-width : 768px) {
+            .equal, .equal > div[class*='col-'] {
+              display: -webkit-box;
+              display: -webkit-flex;
+              display: flex;
+              flex:1 0 auto;
+            }
+          }
+          @media (max-width : 768px) {
+            .equal, .equal > div[class*='col-'] {
+              margin-bottom: 50px;
+            }
           }
     </style>
 
