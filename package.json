@@ -22,7 +22,7 @@
     "gulp-replace": "^0.5.4"
   },
   "scripts": {
-    "start": "gulp build && node app.js",
+    "start": "gulp build && live-server ./public",
     "aws-config": "source ~/.bash_profile",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
