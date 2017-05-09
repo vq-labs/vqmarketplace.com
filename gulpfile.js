@@ -32,3 +32,5 @@ gulp.task('deploy', [ 'build' ], function() {
         console.log(code !== 0 ? 'error in build' : 0);
     });
 });
+
+gulp.task('watch', () => gulp.watch('./src/**/**',  [ 'build' ]));
