@@ -102,7 +102,7 @@ section {
 
 .header-button {
     background-color: transparent; 
-    border: 2px solid #ffffff;
+    border: 2px solid #FFFFFF;
     color: #ffffff;
     padding: 10px 22px;
     text-align: center;
@@ -117,7 +117,7 @@ section {
 }
 
 .header-button:hover {
-    background-color: #ffffff; 
+    background-color: #FFFFFF; 
     color:  #1A5276;
 	border: #1A5276;
 	text-decoration: none;
