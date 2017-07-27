@@ -113,7 +113,7 @@ section {
 	-webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
 	height: 50px;
-	width: 220px;
+	width: 240px;
 }
 
 .header-button:hover {
@@ -136,7 +136,7 @@ section {
 	-webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
 	height: 50px;
-	width: 220px;
+	width: 240px;
 }
 
 .button:hover {
