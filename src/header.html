@@ -16,17 +16,15 @@
             <a href="/pricing"><h5>Pricing</h5></a>
           </md-list-item>
           <md-list-item class="md-1-line">
-            <a href="/implementation"><h5>Implementation</h5></a>
+            <a href="/use-cases"><h5>Use Cases</h5></a>
           </md-list-item>
           <md-list-item class="md-1-line">
-            <a href="/consulting"><h5>Consulting & Training</h5></a>
+            <a href="/implementation"><h5>Implementation</h5></a>
           </md-list-item>
           <md-list-item class="md-1-line">
             <a href="/contact"><h5>Contact</h5></a>
           </md-list-item>
-          <md-list-item class="md-1-line">
-            <a href="/imprint"><h5>Imprint</h5></a>
-          </md-list-item>
+         
         </md-list>  
      </md-content>   
 </md-sidenav>
@@ -36,7 +34,7 @@
         <div class="navbar-header">
             <a class="navbar-brand" class="active" href="/">
                 <img style="padding: 5px; padding-top:0px; height: 40px;" class="visible-xs" src="/vq-labs-logo-xs-2.png"/>
-                <img style="padding: 5px; padding-top:0px; height: 35px;" class="hidden-xs" src="/vq-labs-logo.png"/>
+                <img style="padding: 5px; padding-top:0px; height: 35px;" class="hidden-xs" src="/vq-labs-logo-xs-2.png"/>
             </a>
 
             <button type="button" class="navbar-toggle collapsed pull-right" ng-click="header.toggle()">
@@ -53,7 +51,7 @@
                 <li>
                         <md-menu ng-cloak>
                             <md-button  ng-click="header.openMenu($mdOpenMenu, $event)">
-                                Products
+                                Solutions
                             </md-button>
                             <md-menu-content>
                                 <a href="/vq-marketplace">
@@ -77,13 +75,12 @@
                             </md-menu-content>
                         </md-menu>
                 </li> 
-                <li>
-                    <md-menu>
-                        <md-button>  
-                            <a href="/pricing">
-                              <span style="color:#777;">Pricing</span>    
-                            </a>
-                        </md-button>
+                <li>      
+                    <a href="/pricing">
+                         <md-button>
+                             <span style="color:#777;">Pricing</span>
+                         </md-button>         
+                    </a>          
                  </li>       
                 <li>
                     <md-menu>
@@ -91,6 +88,15 @@
                             Services
                         </md-button>
                         <md-menu-content> 
+                             <a href="/use-cases">
+                                <md-menu-item>
+                                    <md-button>
+                                            <div layout="row" flex>
+                                                <p flex>Use Cases</p>
+                                            </div>
+                                    </md-button>
+                                </md-menu-item>
+                             </a>
                             <a href="/implementation">
                                 <md-menu-item>
                                     <md-button>
@@ -100,56 +106,16 @@
                                     </md-button>
                                 </md-menu-item>
                              </a>
-                            <a href="/consulting">
-                                <md-menu-item>
-                                    <md-button>
-                                            <div layout="row" flex>
-                                                <p flex>Consulting & Training</p>
-                                            </div>
-                                    </md-button>
-                                </md-menu-item>
-                             </a>
                         </md-menu-content>
                     </md-menu>
                 </li>
-                <li>
-                    <md-menu>
-                        <md-button  ng-click="header.openMenu($mdOpenMenu, $event)">
-                            Company
-                        </md-button>
-                        <md-menu-content>
-                             <a href="/jobs">
-                                <md-menu-item>
-                                    <md-button>
-                                        <div layout="row" flex>
-                                            <p flex>Jobs</p>
-                                        </div>
-                                    </md-button>
-                                </md-menu-item>
-                             </a>
-                              <a href="/contact">
-                                    <md-menu-item>
-                                        <md-button>
-                                        
-                                                <div layout="row" flex>
-                                                    <p flex>Contact</p>
-                                                </div>
-                                            
-                                        </md-button>
-                                    </md-menu-item>
-                               </a>
-                               <a href="/imprint">
-                            <md-menu-item>
-                                <md-button>
-                                        <div layout="row" flex>
-                                            <p flex>Imprint</p>
-                                        </div>
-                                </md-button>
-                            </md-menu-item>
-                            </a>
-                        </md-menu-content>
-                    </md-menu>
-                </li>
+                 <li>
+                     <a href="/contact">
+                         <md-button>
+                             <span style="color:#777;">Contact us</span>
+                         </md-button>         
+                    </a>  
+                 </li>   
             </ul>
         </div>
     </div>

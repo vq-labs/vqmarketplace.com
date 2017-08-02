@@ -113,20 +113,20 @@ section {
 	-webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
 	height: 50px;
-	width: 220px;
+	width: 240px;
 }
 
 .header-button:hover {
     background-color: #FFFFFF; 
-    color:  #1A5276;
-	border: #1A5276;
+    color:   #000000 ;
+	border:  #000000 ;
 	text-decoration: none;
 }
 
 .button {
     background-color: transparent; 
-    border: 2px solid #1A5276;
-    color: #1A5276;
+    border: 2px solid  #1A5276;
+    color:  #1A5276;
     padding: 10px 22px;
     text-align: center;
     text-decoration: none;
@@ -136,11 +136,11 @@ section {
 	-webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
 	height: 50px;
-	width: 220px;
+	width: 240px;
 }
 
 .button:hover {
-    background-color: #1A5276; 
+    background-color:  #1A5276;
     color:  #ffffff;
 	border: #ffffff;
 	text-decoration: none;
@@ -163,9 +163,46 @@ section {
   content: ' ';
   display: block;
   /* adjust 'height' to position overlay content vertically */
-  height: 25%;
+  height: 20%;
  
 }
+
+.vq-usecases {
+
+    background: url(/images/people.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.vq-marketplace {
+
+    background: url(/images/buildings.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.vq-main {
+
+    background: url(./images/main-photo.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.vq-sales {
+
+    background: url(./images/sales.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 .timeline {
   list-style: none;
   padding: 20px 0 20px;
@@ -346,5 +383,11 @@ section {
   color: #000000;
 }
 
+.nav>li>a {
+  position:relative;
+  display: inline;
+  padding: 10px 10px;
 
+
+}
 
