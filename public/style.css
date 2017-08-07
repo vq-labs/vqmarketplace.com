@@ -318,15 +318,15 @@ section {
 }
 
 .timeline-badge.planning {
-  background-color: #328cc1 !important;
+  background-color: #17A589 !important;
 }
 
 .timeline-badge.implementing {
-  background-color: #d9b310 !important;
+  background-color: #1A5276 !important;
 }
 
 .timeline-badge.deploying {
-  background-color: #328cc1 !important;
+  background-color: #17A589 !important;
 }
 
 .timeline-title {
