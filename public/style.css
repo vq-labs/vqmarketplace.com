@@ -203,6 +203,15 @@ section {
     background-size: cover;
 }
 
+.vq-contest {
+
+    background: url(./images/people.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 .timeline {
   list-style: none;
   padding: 20px 0 20px;
