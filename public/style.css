@@ -30,7 +30,7 @@ h3,
 h4 {
 	text-transform: uppercase;
 	color: #444;
-	font-weight: lighter;
+	font-weight: 300;
 	line-height: 1.2;
 	margin: 30px 0 10px 0;
 }
@@ -167,6 +167,15 @@ section {
  
 }
 
+ .vq-half-transparent {
+    background: rgba(70, 72, 82, 0.3)
+  }
+
+  .vq-dark-bg {
+    background-color: #000;
+    color: #546e7a;
+  }
+
 .vq-usecases {
 
     background: url(/images/people.jpg) no-repeat center center fixed; 
@@ -178,7 +187,7 @@ section {
 
 .vq-marketplace {
 
-    background: url(/images/buildings.jpg) no-repeat center center fixed; 
+    background: url(/images/people.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -187,7 +196,7 @@ section {
 
 .vq-main {
 
-    background: url(./images/main-photo.jpg) no-repeat center center fixed; 
+    background: url(./images/people.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -197,6 +206,24 @@ section {
 .vq-sales {
 
     background: url(./images/sales.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.vq-jobs {
+
+    background: url(./images/jobs.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.vq-implement {
+
+    background: url(./images/implement.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
