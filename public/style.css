@@ -168,7 +168,7 @@ section {
 }
 
  .vq-half-transparent {
-    background: rgba(70, 72, 82, 0.3)
+    background: rgba(70, 72, 82, 0.5)
   }
 
   .vq-dark-bg {
@@ -187,7 +187,7 @@ section {
 
 .vq-marketplace {
 
-    background: url(/images/people.jpg) no-repeat center center fixed; 
+    background: url(/images/buildings.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -196,7 +196,7 @@ section {
 
 .vq-main {
 
-    background: url(./images/people.jpg) no-repeat center center fixed; 
+    background: url(./images/crowd.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
