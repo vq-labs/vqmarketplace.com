@@ -109,11 +109,11 @@ section {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-	border-radius: 2px;
-	-webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-	height: 50px;
-	width: 240px;
+    border-radius: 2px;
+    -webkit-transition-duration: 0.4s;
+      transition-duration: 0.4s;
+    height: 50px;
+    width: 240px;
 }
 
 .header-button:hover {
