@@ -22,6 +22,7 @@ h1 {
 	font-weight: 100;
 	font-family: 'Helvetica Neue';
 	letter-spacing: 5px;
+
 }
 
 h1,
@@ -68,6 +69,11 @@ section {
    font-size: 45px;
   }
 
+  h2  {
+  font-size: 24px;
+
+ }
+
   .vq-intro {
 	  margin-top: 70px;
   }
@@ -101,10 +107,10 @@ section {
 }
 
 .header-button {
-    background-color: transparent; 
-    border: 2px solid #FFFFFF;
+    background-color: #1A5276;
+    border: 2px solid #1A5276;
     color: #ffffff;
-    padding: 10px 22px;
+    padding: 1px 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -112,14 +118,14 @@ section {
     border-radius: 2px;
     -webkit-transition-duration: 0.4s;
       transition-duration: 0.4s;
-    height: 50px;
-    width: 240px;
+    height: 40px;
+    width: 160px;
 }
 
 .header-button:hover {
-    background-color: #FFFFFF; 
-    color:   #000000 ;
-	border:  #000000 ;
+    background-color: #2C3E50;
+    color:   #ffffff; ;
+	border:  #2C3E50 ;
 	text-decoration: none;
 }
 
@@ -136,7 +142,7 @@ section {
 	-webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
 	height: 50px;
-	width: 240px;
+	width: 150px;
 }
 
 .button:hover {
@@ -196,7 +202,16 @@ section {
 
 .vq-main {
 
-    background: url(./images/crowd.jpg) no-repeat center center fixed; 
+    background: url(/images/crowd.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.vq-enterprise {
+
+    background: url(/images/enterprise.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

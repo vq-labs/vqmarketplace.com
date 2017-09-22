@@ -19,7 +19,8 @@
     "gulp-htmlmin": "^3.0.0",
     "gulp-inject": "^4.2.0",
     "gulp-minify-ejs": "^1.0.3",
-    "gulp-replace": "^0.5.4"
+    "gulp-replace": "^0.5.4",
+    "gulp-watch": "^4.3.11"
   },
   "scripts": {
     "start": "gulp build && live-server ./public",
