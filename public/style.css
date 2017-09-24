@@ -102,13 +102,13 @@ section {
     border: 2px solid #1A5276;
     color: #ffffff;
     padding: 1px 15px;
+    padding: 10px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     border-radius: 2px;
     -webkit-transition-duration: 0.4s;
-      transition-duration: 0.4s;
+    transition-duration: 0.4s;
     height: 40px;
     width: 160px;
 }
@@ -116,7 +116,6 @@ section {
 .header-button:hover {
     background-color: #444444;
     color:   #ffffff; ;
-	  border:  #2C3E50 ;
 	  text-decoration: none;
 }
 
@@ -422,12 +421,24 @@ section {
   color: #000000;
 }
 
-.nav>li>a {
-  position:relative;
-  display: inline;
-  padding: 10px 10px;
+.nav li {
+  font-weight: 400;
 }
 
+.nav > li > a {
+  top: 15px;
+  position: relative;
+  display: inline;
+  text-transform: uppercase;
+}
+
+
+.nav .dropdown-menu li a {
+  padding: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+}
 
 /**
   MAILCHIMP FORM
@@ -534,12 +545,13 @@ body {
             color:#444;
             left:0;
           }
-          .price-header{
+          .price-header {
             color:#1A5276;
+            right: 10px;
             border-bottom:1px solid #ddd;
             position:relative;
           }
-          .price-header::after{
+          .price-header::after {
             content:'';
             position:absolute;
             display:inline-block;
