@@ -6,6 +6,8 @@ const replace = require('gulp-replace');
 const spawn = require('child_process').spawn;
 const fileinclude = require('gulp-file-include');
 
+
+
 gulp.task('build', function() {
   return gulp.src([ 'src/**/*.html' ])
     .pipe(fileinclude({
@@ -15,6 +17,13 @@ gulp.task('build', function() {
     .pipe(htmlmin({ collapseWhitespace: true }))
     .pipe(gulp.dest('public'))
 })
+
+gulp.task('watch', function () {
+    // Endless stream mode 
+    return watch('src/**', {
+        ignoreInitial: false
+    }).pipe(gulp.dest('build'));
+});
 
 gulp.task('deploy', [ 'build' ], function() {
     const args = [ './**', '--region', 'eu-central-1', '--bucket', 'vq-labs.com', '--gzip' ];

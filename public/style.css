@@ -1,5 +1,4 @@
 
-
 /*----------------------------------------------------------------------------------------
 										COMMON STYLES
 -----------------------------------------------------------------------------------------*/
@@ -8,20 +7,13 @@
     z-index: 9999 !important;
 }
 
-body {
-	font-family: 'Open Sans', sans-serif;
-	font-size: 15px;
-	font-weight: 100;
-	color: #777;
-	line-height: 1.6;
-	text-align: center;
-	height: 100%;
-}
+
 
 h1 {
 	font-weight: 100;
 	font-family: 'Helvetica Neue';
 	letter-spacing: 5px;
+
 }
 
 h1,
@@ -29,7 +21,7 @@ h2,
 h3,
 h4 {
 	text-transform: uppercase;
-	color: #444;
+	color: #000000;
 	font-weight: 300;
 	line-height: 1.2;
 	margin: 30px 0 10px 0;
@@ -68,6 +60,11 @@ section {
    font-size: 45px;
   }
 
+  h2  {
+  font-size: 24px;
+
+ }
+
   .vq-intro {
 	  margin-top: 70px;
   }
@@ -101,26 +98,25 @@ section {
 }
 
 .header-button {
-    background-color: transparent; 
-    border: 2px solid #FFFFFF;
+    background-color: #1A5276;
+    border: 2px solid #1A5276;
     color: #ffffff;
-    padding: 10px 22px;
+    padding: 1px 15px;
+    padding: 10px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     border-radius: 2px;
     -webkit-transition-duration: 0.4s;
-      transition-duration: 0.4s;
-    height: 50px;
-    width: 240px;
+    transition-duration: 0.4s;
+    height: 40px;
+    width: 160px;
 }
 
 .header-button:hover {
-    background-color: #FFFFFF; 
-    color:   #000000 ;
-	border:  #000000 ;
-	text-decoration: none;
+    background-color: #444444;
+    color:   #ffffff; ;
+	  text-decoration: none;
 }
 
 .button {
@@ -132,11 +128,12 @@ section {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-	border-radius: 2px;
-	-webkit-transition-duration: 0.4s;
+    font-weight:normal;
+	  border-radius: 2px;
+	  -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
-	height: 50px;
-	width: 240px;
+	  height: 50px;
+	  width: 180px;
 }
 
 .button:hover {
@@ -167,10 +164,6 @@ section {
  
 }
 
- .vq-half-transparent {
-    background: rgba(70, 72, 82, 0.5)
-  }
-
   .vq-dark-bg {
     background-color: #000;
     color: #546e7a;
@@ -196,16 +189,25 @@ section {
 
 .vq-main {
 
-    background: url(./images/crowd.jpg) no-repeat center center fixed; 
+    background: url(/images/crowd.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
 
-.vq-sales {
+.vq-enterprise {
 
-    background: url(./images/sales.jpg) no-repeat center center fixed; 
+    background: url(/images/enterprise.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.vq-partner-program {
+
+    background: url(./images/adrian.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -419,11 +421,242 @@ section {
   color: #000000;
 }
 
-.nav>li>a {
-  position:relative;
-  display: inline;
-  padding: 10px 10px;
-
-
+.nav li {
+  font-weight: 400;
 }
+
+.nav > li > a {
+  top: 15px;
+  position: relative;
+  display: inline;
+  text-transform: uppercase;
+}
+
+
+.nav .dropdown-menu li a {
+  padding: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+}
+
+/**
+  MAILCHIMP FORM
+*/
+.mc_embed_signup {
+  margin-left: 5px;
+  height: 50px !important;
+  font: 16px !important;
+}
+
+.mc_embed_signup input {
+  font-weight:normal;
+  padding: 10px;
+  display: 'inline-block';
+  height: 49px !important;
+  font: 20px !important;
+  border-radius: 1px;
+  width: 60%;
+  border: 2px white;
+}
+
+.section-footer-signup .mc_embed_signup button {
+  background-color: #fb8b8a; 
+}
+
+.section-footer-signup .mc_embed_signup button:hoover {
+  background-color: #444444  ; 
+}
+
+.mc_embed_signup button {
+  padding-bottom: 0px;
+  border-radius: 1px;
+  display: 'inline-block';
+  width: 38%;
+  margin-left: 1%;
+  height: 49px !important;
+  font: 16px !important;
+  color:  #ffffff;
+  font-weight:normal;
+  background-color: #1A5276; 
+  border: 0px solid  #1A5276;
+}
+
+.section-footer-signup {
+  background-color: #000639;
+}
+
+.mc_embed_signup input:focus, button:focus {
+    outline: none;
+}
+
+.mc_embed_signup button:hover {
+  background-color:  #444444  ;
+  color:  #ffffff;
+	border: #ffffff;
+	text-decoration: none;
+}
+
+/**
+  END MAILCHIMP FORM
+*/
+
+
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 15px;
+  background-color:#F8F9F9;
+	font-weight: 100;
+	color: #546e7a;
+	line-height: 1.6;
+	text-align: center;
+	height: 100%;
+}
+
+
+    .vq-half-transparent {
+        background: rgba(70, 72, 82, 0.4)
+    }
+
+          ul {
+            -webkit-margin-before: 0;
+            -webkit-margin-after: 0;
+            -webkit-margin-start: 0;
+            -webkit-margin-end: 0;
+            -webkit-padding-start: 0;
+          }
+
+          .container {
+            margin: 20px auto;
+            padding-bottom:40px;
+          }
+
+          .price-wrapp{
+            position:relative;
+            width:100%;
+            padding:40px;
+            color:#adadad;
+            border-radius:5px;
+            transition: all 250ms ease;
+          }
+          .price-wrapp:hover{
+            box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
+            color:#444;
+            left:0;
+          }
+          .price-header {
+            color:#1A5276;
+            right: 10px;
+            border-bottom:1px solid #ddd;
+            position:relative;
+          }
+          .price-header::after {
+            content:'';
+            position:absolute;
+            display:inline-block;
+            bottom:-2px;
+            width:0;
+            height:4px;
+            background:#FF4081;
+            transition: all 250ms ease;
+          }
+          .price-wrapp:hover  .price-header::after{
+            width:100%;
+            left:0;
+          }
+          .price-header .type{
+            display:block;
+            text-transform:uppercase;
+            font-size:18px;
+            margin:0px 0px 10px 0px;
+          }
+          .prices{
+            margin:10px 0;
+            text-align:center;
+          }
+          .price-wrapp .price{
+            display:inline-block;
+            text-transform:uppercase;
+            font-size:36px;
+            font-weight:bold;
+          }
+
+          .price-body{
+            margin:20px 0 0 0;
+          }
+
+          .price-body ul li{
+            list-style:none;
+            webkit-padding-start:0
+          }
+
+          .wsk-btn{
+            padding:10px;
+            width:100%;
+            border-bottom-left-radius:5px;
+            border-bottom-right-radius:5px;
+            border:0;
+            box-shadow:none;
+            transition: all 100ms ease;
+          }
+          .wsk-btn:hover{
+            box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
+            font-size:1.25em;
+          }
+          .price-footer{
+            position:absolute;
+            text-align:center;
+            bottom:-55px;
+            margin:0 auto;
+            left:0;
+            right:0;
+            padding:20px 0 ;
+          }
+
+          .vq-footer {
+            color:#ffffff;
+            background-color: #000639;
+          }
+
+          .vq-footer a {
+            color: #919eab;
+            text-decoration: none;
+          }
+
+          .vq-footer hr {
+            color: #919eab;
+            border-top: 1px solid #919eab;
+          }
+
+          .vq-footer a:hover {
+            color: white;
+            text-decoration: none;
+          }
+
+          .vq-footer .vq-social-link {
+            margin-left: 5px;
+            margin-right: 5px;
+            color: white;
+          }
+
+          .wsk-btn.red{
+            background:#1A5276;
+            color:#ffffff;
+            font-family: helvetica;
+          }
+          /* Only Small Devices, Phones */ 
+          @media (min-width : 768px) {
+            .equal, .equal > div[class*='col-'] {
+              display: -webkit-box;
+              display: -webkit-flex;
+              display: flex;
+              flex:1 0 auto;
+            }
+          }
+          @media (max-width : 768px) {
+            .equal, .equal > div[class*='col-'] {
+              margin-bottom: 50px;
+            }
+          }
 
