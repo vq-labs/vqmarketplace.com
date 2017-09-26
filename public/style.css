@@ -98,8 +98,8 @@ section {
 }
 
 .header-button {
-    background-color: #1A5276;
-    border: 2px solid #1A5276;
+    background-color: #000639;
+    border: 2px solid #000639;
     color: #ffffff;
     padding: 1px 15px;
     padding: 10px;
@@ -121,8 +121,8 @@ section {
 
 .button {
     background-color: transparent; 
-    border: 2px solid  #1A5276;
-    color:  #1A5276;
+    border: 2px solid  #000639;
+    color:  #000639;
     padding: 10px 22px;
     text-align: center;
     text-decoration: none;
@@ -137,7 +137,7 @@ section {
 }
 
 .button:hover {
-    background-color:  #1A5276;
+    background-color:  #000639;
     color:  #ffffff;
 	border: #ffffff;
 	text-decoration: none;
@@ -360,16 +360,24 @@ section {
   right: auto;
 }
 
-.timeline-badge.planning {
-  background-color: #17A589 !important;
+.timeline-badge.assessing {
+  background-color: #000639 !important;
+}
+
+.timeline-badge.design-thinking {
+  background-color: #fb8b8a !important;
 }
 
 .timeline-badge.implementing {
-  background-color: #1A5276 !important;
+  background-color: #000639 !important;
 }
 
-.timeline-badge.deploying {
-  background-color: #17A589 !important;
+.timeline-badge.pilot-deployment {
+  background-color: #fb8b8a !important;
+}
+
+.timeline-badge.go-live {
+  background-color: #000639 !important;
 }
 
 .timeline-title {
@@ -483,8 +491,8 @@ section {
   font: 16px !important;
   color:  #ffffff;
   font-weight:normal;
-  background-color: #1A5276; 
-  border: 0px solid  #1A5276;
+  background-color: #fb8b8a; 
+  border: 0px solid  #fb8b8a;
 }
 
 .section-footer-signup {
@@ -521,7 +529,7 @@ body {
 
 
 .vq-half-transparent {
-    background: rgba(0, 6, 57, 0.7)
+    background: rgba(0, 6, 57, 0.5)
 }
 
 ul {
@@ -563,7 +571,7 @@ ul {
   bottom:-2px;
   width:0;
   height:4px;
-  background:#FF4081;
+  background:#fb8b8a;
   transition: all 250ms ease;
 }
 .price-wrapp:hover  .price-header::after{
