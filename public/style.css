@@ -97,6 +97,31 @@ section {
 	position:fixed;
 }
 
+
+.enterprise-button {
+    background-color: #fb8b8a; 
+    border: 2px solid  #fb8b8a;
+    color:  #ffffff;
+    padding: 10px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight:normal;
+	  border-radius: 2px;
+	  -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+	  height: 50px;
+	  width: 180px;
+}
+
+.enterprise-button:hover {
+    background-color:  #444444;
+    color:  #ffffff;
+	  border: #444444;
+	  text-decoration: none;
+}
+
 .header-button {
     background-color: #000639;
     border: 2px solid #000639;
@@ -115,7 +140,8 @@ section {
 
 .header-button:hover {
     background-color: #444444;
-    color:   #ffffff; ;
+    color:   #ffffff; 
+    border-color: #444444;
 	  text-decoration: none;
 }
 
