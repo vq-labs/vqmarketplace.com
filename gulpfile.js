@@ -19,6 +19,7 @@ gulp.task('build', function() {
 })
 
 gulp.task('watch', function () {
+    console.log('watch')
     // Endless stream mode 
     return watch('src/**', {
         ignoreInitial: false
