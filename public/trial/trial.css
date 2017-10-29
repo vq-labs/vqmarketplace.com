@@ -87,9 +87,29 @@ input[type="submit"]{
     border-color: rgba(0,0,0,0.1)!important;
     background-color: #f0f0f0;
 }
+.select2-container--focus .select2-selection{
+  border-color: rgba(0,0,0,0.1)!important;
+  background-color: #f0f0f0;
+}
+.form-group-custom.required.incomplete {
+    border-color: #f55753 !important;
+}
+.form-group-custom.required.incomplete > label {
+    color: #f55753 !important;
+}
 
-input, input:focus {
-    -webkit-transition: none!important;
+/* input, input:focus {
+  -webkit-transition: none!important;
+} */
+
+input:-webkit-autofill {
+  transition: box-shadow 0.2s ease;
+  -webkit-box-shadow: 0 0 0 1000px #fff inset!important;
+}
+
+input:-webkit-autofill:focus {
+  transition: box-shadow 0.2s ease;
+  -webkit-box-shadow: 0 0 0 1000px #f0f0f0 inset!important;
 }
 
 /*form label*/
@@ -322,7 +342,7 @@ input, input:focus {
     transition: all 0.3s ease;
 }
 
-.select2-selection select2-selection--single:focus {
+.select2-selection .select2-selection--single:focus {
   outline: 0;
 }
 

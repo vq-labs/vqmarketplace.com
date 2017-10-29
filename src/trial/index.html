@@ -59,7 +59,7 @@
       <div class="row">
         <div class="col-md-12">
           <!-- multistep form -->
-          <form id="msform">
+          <form id="msform" autocomplete="off" autocomplete="false" nofill>
             <!-- progressbar -->
             <ul id="progressbar">
               <li class="active">Account</li>
@@ -68,49 +68,51 @@
             </ul>
             <p><img class="logo" src="https://vq-labs.com/vq-labs-logo-xs-2.png" alt=""></p>
             <!-- fieldsets -->
-            <fieldset>
+            <fieldset id="account">
               <h2 class="fs-title">Account Details</h2>
               <h3 class="fs-subtitle">Please enter your account details</h3>
               <div class="form-group-custom required">
                 <label for="email">E-Mail</label>
-                <input class="form-control" type="email" name="email" />
+                <input id="email" class="form-control" type="email" name="email" required />
               </div>
               <div class="form-group-custom form-group-custom-select2 required">
                 <label for="country">Country</label>
-                <select id="country-select" class="full-width" name="country"></select>
+                <select id="country-select" data-placeholder="Select your country" class="full-width" name="country"  required></select>
               </div>
               <input type="button" name="next" class="next action-button" value="Next" />
             </fieldset>
-            <fieldset>
+
+            <fieldset id="credentials">
               <h2 class="fs-title">Credentials</h2>
               <h3 class="fs-subtitle">Please enter your personal details</h3>
               <div class="form-group-custom required">
                 <label for="firstname">Firstname</label>
-                <input class="form-control" type="text" name="firstname" />
+                <input id="firstname" class="form-control" type="text" name="firstname" required />
               </div>
               <div class="form-group-custom required">
                 <label for="lastname">Lastname</label>
-                <input class="form-control" type="text" name="lastname" />  
+                <input id="lastname" class="form-control" type="text" name="lastname" required />  
               </div>
               <div class="form-group-custom required">
                 <label for="password">Password</label>
-                <input class="form-control" type="password" name="password" />  
+                <input id="password" class="form-control" type="password" name="password" required />  
               </div>
               <div class="form-group-custom required">
                 <label for="passwordAgain">Password Again</label>
-                <input class="form-control" type="password" name="passwordAgain" />  
+                <input id="passwordAgain" class="form-control" type="password" name="passwordAgain" required />  
               </div>
               <input type="button" name="previous" class="previous action-button" value="Previous" />
               <input type="button" name="next" class="next action-button" value="Next" />
             </fieldset>
-            <fieldset>
+
+            <fieldset id="marketplace">
               <h3 class="fs-subtitle">Please enter your marketplace details</h3>
               <div class="form-group-custom required">
                 <label for="marketplaceName">Marketplace Name</label>
-                <input class="form-control" type="text" name="marketplaceName" />
+                <input id="marketplaceName"  class="form-control" type="text" name="marketplaceName" required />
               </div>
               <input type="button" name="previous" class="previous action-button" value="Previous" />
-              <input type="submit" name="submit" class="submit action-button" value="Submit" />
+              <input type="button" name="next" class="next action-button" value="Submit" />
             </fieldset>
           </form>
         </div>
@@ -122,18 +124,152 @@
         var current_fs, next_fs, previous_fs; //fieldsets
         var left, opacity, scale; //fieldset properties which we will animate
         var animating; //flag to prevent quick multi-click glitches
+        var step1Completed, step2Completed, step3Completed;
 
         $('#msform .form-control').on('click', function(e){
           $('#msform .form-group-custom.focused').removeClass('focused');
           $(this).closest('.form-group-custom').addClass('focused')
         });
 
+        $('#country-select').on('select2:opening', function (e) {
+          $('#msform .form-group-custom.focused').removeClass('focused');
+        });
+
+        $(document).click( function(e){
+          if (!$(e.target).is("input")) {
+            $('#msform .form-group-custom.focused').removeClass('focused');
+          }
+        });
+
+        
+
         $(".next").click(function(){
-          if(animating) return false;
-          animating = true;
+
+          var elem = $(this);
+          var parent = elem.parent();
+
+          current_fs = parent;
+          next_fs = parent.next();
+          current_fsId = parent.attr('id');
+          next_fsId = parent.next().attr('id');
+          switch(next_fsId) {
+            case "credentials":
+              if (parent.find('#email').val() === "" || document.getElementById('email').validationMessage !== "") {
+                parent.find('#email').parent().addClass('incomplete');
+                return false;
+              } else {
+                parent.find('#email').parent().removeClass('incomplete');
+              }
+              if (parent.find('#country-select').val() === "") {
+                parent.find('#country-select').parent().addClass('incomplete');
+                return false;
+              } else {
+                parent.find('#country-select').parent().removeClass('incomplete');
+              }
+
+              if (!step1Completed) {
+                $.ajax({
+                  method: "POST",
+                  url: "http://muddy-darkness-5898.getsandbox.com/step-1",
+                  data: { }
+                }).done(function(data) {
+                  if (data.status) {
+                    showNext(elem)
+                    step1Completed = true;
+                  }
+                }).fail(function() {
+  
+                });
+              } else {
+                showNext(elem)
+              }
+
+              break;      
+            case "marketplace":
+              if (parent.find('#firstname').val() === "") {
+                parent.find('#firstname').parent().addClass('incomplete');
+                return false;
+              } else {
+                parent.find('#firstname').parent().removeClass('incomplete');
+              } 
+              if (parent.find('#lastname').val() === "") {
+                parent.find('#lastname').parent().addClass('incomplete');
+                return false;
+              } else {
+                parent.find('#lastname').parent().removeClass('incomplete');
+              } 
+              if (parent.find('#password').val() === "") {
+                parent.find('#password').parent().addClass('incomplete');
+                return false;
+              } else {
+                parent.find('#password').parent().removeClass('incomplete');
+              } 
+              if (parent.find('#passwordAgain').val() === "" || $('#password').val() !== $('#passwordAgain').val()) {
+                parent.find('#passwordAgain').parent().addClass('incomplete');
+                return false;
+              } else {
+                parent.find('#passwordAgain').parent().removeClass('incomplete');
+              } 
+
+              if (!step2Completed) {
+                $.ajax({
+                  method: "POST",
+                  url: "http://muddy-darkness-5898.getsandbox.com/step-1",
+                  data: { }
+                }).done(function(data) {
+                  if (data.status) {
+                    showNext(elem)
+                    step2Completed = true;
+                  }
+                }).fail(function() {
+  
+                });
+              } else {
+                showNext(elem)
+              }
+
+              break;
+            case undefined: //for the last step
+              if (parent.find('#marketplaceName').val() === "") {
+                parent.find('#marketplaceName').parent().addClass('incomplete');
+                return false;
+              } else {
+                parent.find('#marketplaceName').parent().removeClass('incomplete');
+              }
+
+              if (!step3Completed) {
+                $.ajax({
+                  method: "POST",
+                  url: "http://muddy-darkness-5898.getsandbox.com/step-1",
+                  data: { }
+                }).done(function(data) {
+                  if (data.status) {
+                    showNext(elem)
+                    step3Completed = true;
+                  }
+                }).fail(function() {
+  
+                });
+              } else {
+                showNext(elem)
+              }
+
+              break;
+            default:
+              break;
+          }
+        });
+
+        var showNext = function(el) {
           
-          current_fs = $(this).parent();
-          next_fs = $(this).parent().next();
+          current_fs = $(el).parent();
+          next_fs = $(el).parent().next();
+          current_fsId = $(el).parent().attr('id');
+          next_fsId = $(el).parent().next().attr('id');
+
+
+          if(animating) return false;
+          animating = true;       
           
           //activate next step on progressbar using the index of next_fs
           $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
@@ -164,7 +300,7 @@
             //this comes from the custom easing plugin
             easing: 'easeInOutBack'
           });
-        });
+        }
 
         $(".previous").click(function(){
           if(animating) return false;
@@ -251,10 +387,12 @@
         //Assuming you have a select element with name country
         // e.g. <select name="name"></select>
 
-        $("#country-select").select2({
-          placeholder: "Select a country",
+        $("#country-select").prepend('<option></option>').select2({
           templateResult: formatCountry,
-          data: isoCountries
+          data: isoCountries,
+          placeholder: function(){
+              $(this).data('placeholder');
+          }
         });         
 
     </script>
