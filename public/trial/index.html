@@ -17,10 +17,11 @@
       fbq('init', '986644178067312'); 
       fbq('track', 'PageView');
       fbq('track', 'InitiateCheckout');</script><noscript><img height="1" width="1" src="https://www.facebook.com/tr?id=986644178067312&ev=PageView
-      &noscript=1"></noscript><!-- End Facebook Pixel Code --></head><body class="bg-gradient-ember"><div class="container-fluid"><div class="row"><div class="col-md-12"><!-- multistep form --><form id="msform" autocomplete="off" autocomplete="false" nofill><!-- progressbar --><ul id="progressbar"><li class="active">Account</li><li>Credentials</li><li>Marketplace</li></ul><p><img class="logo" src="https://vq-labs.com/vq-labs-logo-xs-2.png" alt=""></p><!-- fieldsets --><fieldset id="account"><h2 class="fs-title">Account Details</h2><h3 class="fs-subtitle">Please enter your account details</h3><div class="form-group-custom required"><label for="email">E-Mail</label><input id="email" class="form-control" type="email" name="email" required></div><div class="form-group-custom form-group-custom-select2 required"><label for="country">Country</label><select id="country-select" data-placeholder="Select your country" class="full-width" name="country" required></select></div><input type="button" name="next" class="next action-button" value="Next"></fieldset><fieldset id="credentials"><h2 class="fs-title">Credentials</h2><h3 class="fs-subtitle">Please enter your personal details</h3><div class="form-group-custom required"><label for="firstname">Firstname</label><input id="firstname" class="form-control" type="text" name="firstname" required></div><div class="form-group-custom required"><label for="lastname">Lastname</label><input id="lastname" class="form-control" type="text" name="lastname" required></div><div class="form-group-custom required"><label for="password">Password</label><input id="password" class="form-control" type="password" name="password" required></div><div class="form-group-custom required"><label for="passwordAgain">Password Again</label><input id="passwordAgain" class="form-control" type="password" name="passwordAgain" required></div><input type="button" name="previous" class="previous action-button" value="Previous"> <input type="button" name="next" class="next action-button" value="Next"></fieldset><fieldset id="marketplace"><h3 class="fs-subtitle">Please enter your marketplace details</h3><div class="form-group-custom required"><label for="marketplaceName">Marketplace Name</label><input id="marketplaceName" class="form-control" type="text" name="marketplaceName" required></div><input type="button" name="previous" class="previous action-button" value="Previous"> <input type="button" name="next" class="next action-button" value="Submit"></fieldset></form></div></div></div><script>//jQuery time
+      &noscript=1"></noscript><!-- End Facebook Pixel Code --></head><body class="bg-gradient-ember"><div class="container-fluid"><div class="row"><div class="col-md-12"><!-- multistep form --><form id="msform" autocomplete="off" autocomplete="false" nofill><!-- progressbar --><ul id="progressbar"><li class="active">Account</li><li>Credentials</li><li>Marketplace</li></ul><p><img class="logo" src="https://vq-labs.com/vq-labs-logo-xs-2.png" alt=""></p><!-- fieldsets --><fieldset id="account"><h2 class="fs-title">Account Details</h2><h3 class="fs-subtitle">Enter your account details</h3><div class="form-group-custom required"><label for="email">E-Mail</label><input id="email" class="form-control" type="email" name="email" required></div><div class="form-group-custom form-group-custom-select2 required"><label for="country">Country</label><select id="country-select" data-placeholder="Select your country" class="full-width" name="country" required></select></div><input type="button" name="next" class="next action-button" value="Next"></fieldset><fieldset id="credentials"><h2 class="fs-title">Credentials</h2><h3 class="fs-subtitle">Enter your personal details</h3><div class="form-group-custom required"><label for="firstname">Firstname</label><input id="firstname" class="form-control" type="text" name="firstname" required></div><div class="form-group-custom required"><label for="lastname">Lastname</label><input id="lastname" class="form-control" type="text" name="lastname" required></div><div class="form-group-custom required"><label for="password">Password</label><input id="password" class="form-control" type="password" name="password" required></div><div class="form-group-custom required"><label for="passwordAgain">Password Again</label><input id="passwordAgain" class="form-control" type="password" name="passwordAgain" required></div><input type="button" name="back" class="previous action-button" value="Back"> <input type="button" name="next" class="next action-button" value="Next"></fieldset><fieldset id="marketplace"><h3 class="fs-subtitle">Give a name to your Marketplace</h3><div class="form-group-custom required"><label for="marketplaceName">Marketplace Name</label><input id="marketplaceName" class="form-control" type="text" name="marketplaceName" required></div><input type="button" name="back" class="previous action-button" value="Back"> <input type="button" name="next" class="next action-button" value="Submit"></fieldset></form></div></div></div><script>//jQuery time
         var current_fs, next_fs, previous_fs; //fieldsets
         var left, opacity, scale; //fieldset properties which we will animate
         var animating; //flag to prevent quick multi-click glitches
+        var step1Completed, step2Completed, step3Completed;
 
         $('#msform .form-control').on('click', function(e){
           $('#msform .form-group-custom.focused').removeClass('focused');
@@ -62,18 +63,23 @@
               } else {
                 parent.find('#country-select').parent().removeClass('incomplete');
               }
-              
-              $.ajax({
-                method: "POST",
-                url: "http://muddy-darkness-5898.getsandbox.com/step-1",
-                data: { }
-              }).done(function(data) {
-                if (data.status) {
-                  showNext(elem)
-                }
-              }).fail(function() {
 
-              });
+              if (!step1Completed) {
+                $.ajax({
+                  method: "POST",
+                  url: "http://muddy-darkness-5898.getsandbox.com/step-1",
+                  data: { }
+                }).done(function(data) {
+                  if (data.status) {
+                    showNext(elem)
+                    step1Completed = true;
+                  }
+                }).fail(function() {
+  
+                });
+              } else {
+                showNext(elem)
+              }
 
               break;      
             case "marketplace":
@@ -101,6 +107,24 @@
               } else {
                 parent.find('#passwordAgain').parent().removeClass('incomplete');
               } 
+
+              if (!step2Completed) {
+                $.ajax({
+                  method: "POST",
+                  url: "http://muddy-darkness-5898.getsandbox.com/step-1",
+                  data: { }
+                }).done(function(data) {
+                  if (data.status) {
+                    showNext(elem)
+                    step2Completed = true;
+                  }
+                }).fail(function() {
+  
+                });
+              } else {
+                showNext(elem)
+              }
+
               break;
             case undefined: //for the last step
               if (parent.find('#marketplaceName').val() === "") {
@@ -109,6 +133,24 @@
               } else {
                 parent.find('#marketplaceName').parent().removeClass('incomplete');
               }
+
+              if (!step3Completed) {
+                $.ajax({
+                  method: "POST",
+                  url: "http://muddy-darkness-5898.getsandbox.com/step-1",
+                  data: { }
+                }).done(function(data) {
+                  if (data.status) {
+                    showNext(elem)
+                    step3Completed = true;
+                  }
+                }).fail(function() {
+  
+                });
+              } else {
+                showNext(elem)
+              }
+
               break;
             default:
               break;

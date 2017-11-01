@@ -8,10 +8,10 @@ html {
 body {
   height: 100%;
   min-height: 100%;
-	font-family: Montserrat, Arial, Verdana;
+	font-family: Helvetica Neue, Arial, Verdana;
 }
 input {
-  font-family: Montserrat, Arial, Verdana;
+  font-family: Helvetica Neue, Arial, Verdana;
 }
 
 input[type="button"],
@@ -69,7 +69,7 @@ input[type="submit"]{
     vertical-align: middle;
   box-shadow: none;
   border: none;
-    font-size: 18px;
+    font-size: 16px;
     margin-top: -4px;
     background: none;
   height: 29px;
@@ -141,7 +141,7 @@ input, input:focus {
 /*buttons*/
 #msform .action-button {
 	width: 100px;
-	background: rgb(18, 62, 84);
+	background: #000639;
 	font-weight: bold;
 	color: white;
 	border: 0 none;
@@ -182,7 +182,7 @@ input, input:focus {
 }
 #progressbar li {
 	list-style-type: none;
-	color: white;
+	color: #000639;
 	text-transform: uppercase;
 	font-size: 9px;
 	width: 33.33%;
@@ -196,8 +196,9 @@ input, input:focus {
 	line-height: 20px;
 	display: block;
 	font-size: 10px;
-	color: #333;
+	color: #000639;
 	background: white;
+  border: 1px solid #000639;
 	border-radius: 3px;
 	margin: 0 auto 5px auto;
 }
@@ -219,7 +220,7 @@ input, input:focus {
 /*marking active/completed steps green*/
 /*The number of the step and the connector before it = green*/
 #progressbar li.active:before,  #progressbar li.active:after{
-	background: rgb(18, 62, 84);
+	background: #000639;
 	color: white;
 }
 
@@ -248,12 +249,7 @@ input, input:focus {
   background-image: linear-gradient(45deg,#314e5f,#242425);
 }
 .bg-gradient-ember {
-  background-color: #fad961;
-  background-image: -webkit-linear-gradient(45deg,#fad961,#f76b1c);
-  background-image: -moz-linear-gradient(45deg,#fad961,#f76b1c);
-  background-image: -ms-linear-gradient(45deg,#fad961,#f76b1c);
-  background-image: -o-linear-gradient(45deg,#fad961,#f76b1c);
-  background-image: linear-gradient(45deg,#fad961,#f76b1c);
+  background-color: #eee;
 }
 .bg-gradient-purple {
   background-color: #c86dd7;
