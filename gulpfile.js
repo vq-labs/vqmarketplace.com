@@ -9,12 +9,19 @@ const fileinclude = require('gulp-file-include');
 
 
 gulp.task('build', function() {
-  return gulp.src([ 'src/**/*.html' ])
+  gulp.src([ 'src/**/*.html' ])
     .pipe(fileinclude({
       prefix: '@@',
       basepath: '@file'
     }))
     .pipe(htmlmin({ collapseWhitespace: true }))
+    .pipe(gulp.dest('public'))
+
+  gulp.src([ 'src/**/*.css' ])
+    .pipe(fileinclude({
+      prefix: '@@',
+      basepath: '@file'
+    }))
     .pipe(gulp.dest('public'))
 })
 
