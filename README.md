@@ -18,6 +18,18 @@ npm install
 
 npm start
 ```
+# Development
+This will listen for changes under the src/ and will build automatically:
+```
+gulp watch
+```
+
+You can then start a server with for example:
+```
+live-server ./public
+```
+
+@todo: to make the above two in one command
 
 # Deployment
 Make sure that you have s3-deploy installed globally:
