@@ -5,7 +5,22 @@ const htmlmin = require('gulp-htmlmin');
 const replace = require('gulp-replace');
 const spawn = require('child_process').spawn;
 const fileinclude = require('gulp-file-include');
+const liveServer = require('gulp-live-server');
+const runSequence = require('run-sequence');
 
+gulp.task('run', function(cb) {
+    runSequence(
+        'build',
+        'watch',
+        'runServer',
+        cb
+    );
+});
+
+gulp.task('runServer', function() {
+    var server = liveServer.static('./public');
+    server.start();
+});
 
 
 gulp.task('build', function() {
@@ -15,7 +30,7 @@ gulp.task('build', function() {
       basepath: '@file'
     }))
     .pipe(htmlmin({ collapseWhitespace: true }))
-    .pipe(gulp.dest('public'))
+    .pipe(gulp.dest('public'));
 
   gulp.src([ 'src/**/*.css' ])
     .pipe(fileinclude({
@@ -23,10 +38,9 @@ gulp.task('build', function() {
       basepath: '@file'
     }))
     .pipe(gulp.dest('public'))
-})
+});
 
 gulp.task('watch', function () {
-    console.log('watch')
     // Endless stream mode 
     return watch('src/**', {
         ignoreInitial: false
