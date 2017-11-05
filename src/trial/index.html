@@ -31,6 +31,12 @@
     <link rel="stylesheet" href="/trial/trial.css">
     <link rel="icon" href="/favicon.png">
 
+    <!-- START OF VQ API -->
+    <script>
+        var VQ_TENANT_API_URL = '@@VQ_TENANT_API_URL';
+    </script>
+    <!-- END OF VQ API -->
+
     <!-- Facebook Pixel Code -->
     <script>
         !function (f, b, e, v, n, t, s) {
@@ -184,7 +190,7 @@
 
                 $.ajax({
                     method: "POST",
-                    url: "http://localhost:8081/api/trial-registration/step-1",
+                    url: VQ_TENANT_API_URL + "/trial-registration/step-1",
                     data: {
                         email: parent.find('#email').val()
                     }
@@ -208,7 +214,7 @@
 
                 $.ajax({
                     method: "POST",
-                    url: "http://localhost:8081/api/trial-registration/step-2",
+                    url: VQ_TENANT_API_URL + "/trial-registration/step-2",
                     data: {
                         apiKey: tenant.apiKey,
                         verificationCode: parent.find('#verificationCode').val()
@@ -245,7 +251,7 @@
                 }
                 $.ajax({
                     method: "POST",
-                    url: "http://localhost:8081/api/trial-registration/step-3",
+                    url: VQ_TENANT_API_URL + "/trial-registration/step-3",
                     data: {
                         apiKey: tenant.apiKey,
                         firstName: parent.find('#firstname').val(),
@@ -284,7 +290,7 @@
 
                 $.ajax({
                     method: "POST",
-                    url: "http://localhost:8081/api/trial-registration/step-4",
+                    url: VQ_TENANT_API_URL + "/trial-registration/step-4",
                     data: {
                         apiKey: tenant.apiKey,
                         marketplaceName: parent.find('#marketplaceName').val(),

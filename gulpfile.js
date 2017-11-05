@@ -2,29 +2,22 @@
 
 const gulp = require('gulp');
 const htmlmin = require('gulp-htmlmin');
-const replace = require('gulp-replace');
+const replace = require('gulp-replace-task');
 const spawn = require('child_process').spawn;
 const fileinclude = require('gulp-file-include');
 const liveServer = require('gulp-live-server');
 const runSequence = require('run-sequence');
 
-gulp.task('run', function(cb) {
-    runSequence(
-        'build',
-        'watch',
-        'runServer',
-        cb
-    );
-});
-
-gulp.task('runServer', function() {
-    var server = liveServer.static('./public');
-    server.start();
-});
-
-
-gulp.task('build', function() {
-  gulp.src([ 'src/**/*.html' ])
+const build = VQ_TENANT_API_URL => {
+    gulp.src([ 'src/**/*.html' ])
+    .pipe(replace({
+        patterns: [
+            {
+                match: 'VQ_TENANT_API_URL',
+                replacement: VQ_TENANT_API_URL
+            }
+        ]
+    }))
     .pipe(fileinclude({
       prefix: '@@',
       basepath: '@file'
@@ -38,14 +31,28 @@ gulp.task('build', function() {
       basepath: '@file'
     }))
     .pipe(gulp.dest('public'))
+};
+
+gulp.task('run', function(cb) {
+    runSequence(
+        'build:local',
+        'watch:local',
+        'runServer',
+        cb
+    );
 });
 
-gulp.task('watch', function () {
-    // Endless stream mode 
-    return watch('src/**', {
-        ignoreInitial: false
-    }).pipe(gulp.dest('build'));
+gulp.task('runServer', function() {
+    var server = liveServer.static('./public');
+    server.start();
 });
+
+// production
+gulp.task('build', () => build('http://vq-marketplace.vq-labs.com/api'));
+
+gulp.task('build:dev', () => build('http://vq-marketplace.viciqloud.com/api'));
+
+gulp.task('build:local', () => build('http://localhost:8081/api'));
 
 gulp.task('deploy', [ 'build' ], function() {
     const args = [ './**', '--region', 'eu-central-1', '--bucket', 'vq-labs.com', '--gzip' ];
@@ -65,3 +72,5 @@ gulp.task('deploy', [ 'build' ], function() {
 });
 
 gulp.task('watch', () => gulp.watch('./src/**/**',  [ 'build' ]));
+gulp.task('watch:dev', () => gulp.watch('./src/**/**',  [ 'build:dev' ]));
+gulp.task('watch:local', () => gulp.watch('./src/**/**',  [ 'build:local' ]));
