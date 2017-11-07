@@ -19,12 +19,15 @@
     "gulp-file-include": "^1.2.0",
     "gulp-htmlmin": "^3.0.0",
     "gulp-inject": "^4.2.0",
+    "gulp-live-server": "0.0.31",
     "gulp-minify-ejs": "^1.0.3",
     "gulp-replace": "^0.5.4",
-    "gulp-watch": "^4.3.11"
+    "gulp-replace-task": "^0.11.0",
+    "gulp-watch": "^4.3.11",
+    "run-sequence": "^2.2.0"
   },
   "scripts": {
-    "start": "gulp build && live-server ./public",
+    "start": "gulp run",
     "aws-config": "source ~/.bash_profile",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
