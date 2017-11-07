@@ -22,6 +22,7 @@
     "gulp-live-server": "0.0.31",
     "gulp-minify-ejs": "^1.0.3",
     "gulp-replace": "^0.5.4",
+    "gulp-replace-task": "^0.11.0",
     "gulp-watch": "^4.3.11",
     "run-sequence": "^2.2.0"
   },
