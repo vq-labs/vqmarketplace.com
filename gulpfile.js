@@ -29,6 +29,21 @@ const build = (VQ_TENANT_API_URL, env) => {
     .pipe(htmlmin({ collapseWhitespace: true }))
     .pipe(gulp.dest('public'));
 
+    gulp.src([ 'src/**/*.js' ])
+    .pipe(replace({
+        patterns: [
+            {
+                match: 'VQ_TENANT_API_URL',
+                replacement: VQ_TENANT_API_URL
+            },
+            {
+                match: 'VQ_WEB_ENV',
+                replacement: env
+            }
+        ]
+    }))
+    .pipe(gulp.dest('public'));
+
   gulp.src([ 'src/**/*.css' ])
     .pipe(fileinclude({
       prefix: '@@',

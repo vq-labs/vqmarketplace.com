@@ -1,34 +1,5 @@
-<!DOCTYPE html><html lang="en"><!--
-	01001001011011100111010001100101011100100110010101110011011101000110010101100100001000000110100101101110001000000111011101101111011100100110101101101001011011100110011100100000011000010111010000100000010101100110100101100011011010010101000101101100011011110111010101100100001111110010000001001000011001010111001001100101001000000110100101110011001000000111010001101000011001010010000001100101011011010110000101101001011011000010000001101111011001100010000001000011010001010100111100111010001000000110000101100100011100100110100101100001011011100010111001100010011000010111001001110111011010010110001101101011011010010100000001110110011010010110001101101001011100010110110001101111011101010110010000101110011000110110111101101101
---><head><meta charset="utf-8"><title>Trial | VQ Labs</title><meta name="description" content="Start your free 14 day trial now."><meta name="author" content="VQ Labs"><meta name="keywords" content="Trial, Marketplace, Sharing economy, SaaS"><meta property="og:url" content="https://vq-labs.com/trial"><meta property="og:type" content="website"><meta property="og:title" content="Trial | VQ Labs"><meta property="og:description" content="Start your free 14 day trial now."><meta property="og:image" content="https://vq-labs.com/images/market-fb.jpg"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><!-- Google Analytics --><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-71873199-1', 'auto');
-        ga('send', 'pageview');</script><!-- End Google Analytics --><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/spin.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda.min.js"></script><link rel="stylesheet" href="/bootstrap.min.css"><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/trial/trial.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda-themeless.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css"><link rel="icon" href="/favicon.ico"><!-- START OF VQ API --><script>var VQ_TENANT_API_URL = 'http://localhost:8081/api';
-        var VQ_WEB_ENV = '@@VQ_WEB_ENV';</script><!-- END OF VQ API --><!-- Facebook Pixel Code --><script>!function (f, b, e, v, n, t, s) {
-            if (f.fbq) return;
-            n = f.fbq = function () {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n;
-            n.push = n;
-            n.loaded = !0;
-            n.version = '2.0';
-            n.queue = [];
-            t = b.createElement(e);
-            t.async = !0;
-            t.src = v;
-            s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window, document, 'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '986644178067312');
-        fbq('track', 'PageView');
-        fbq('track', 'InitiateCheckout');</script><noscript><img height="1" width="1" src="https://www.facebook.com/tr?id=986644178067312&ev=PageView
-      &noscript=1"></noscript><!-- End Facebook Pixel Code --></head><body class="bg-gradient-ember font-family-montserrat"><div class="container-fluid"><div class="row"><div class="col-md-12"><!-- multistep form --><form id="msform" autocomplete="off" autocomplete="false" nofill><!-- progressbar --><ul id="progressbar"><li class="active">Account</li><li>Verification</li><li>Credentials</li><li>Marketplace</li></ul><p><img class="logo" src="https://vq-labs.com/vq-labs-logo-xs-2.png" alt=""></p><!-- fieldsets --><fieldset id="account"><h2 class="fs-title">Account Details</h2><h3 class="fs-subtitle">Enter your account details</h3><div class="form-group-custom required"><label for="email">E-Mail</label><input id="email" class="form-control" type="email" name="email" required></div><div class="hidden alert alert-danger margin-top3 border-radius-2px"><small class="text"></small></div><button id="btnAccountNext" data-style="expand-right" name="next" class="next action-button ladda-button"><span class="ladda-label">Next</span></button></fieldset><fieldset id="verification"><h2 class="fs-title">Verification</h2><h3 class="fs-subtitle">Enter the verification code we have sent to your e-mail</h3><div class="form-group-custom required"><label for="verificationCode">Verification</label><input id="verificationCode" class="form-control" type="text" name="verificationCode" required></div><br><small>Please check your spam folder if you have not received it yet or <a href="#" id="resendVerification">try resending it</a></small><div class="hidden alert alert-danger margin-top3 border-radius-2px"><small class="text"></small></div><div class="hidden alert alert-info margin-top3 border-radius-2px"><small class="text"></small></div><button id="btnVerificationNext" name="next" data-style="expand-right" class="next action-button ladda-button"><span class="ladda-label">Next</span></button></fieldset><fieldset id="credentials"><h2 class="fs-title">Credentials</h2><h3 class="fs-subtitle">Enter your personal details</h3><div class="form-group-custom required"><label for="firstname">Firstname</label><input id="firstname" class="form-control" type="text" name="firstname" required></div><div class="form-group-custom required"><label for="lastname">Lastname</label><input id="lastname" class="form-control" type="text" name="lastname" required></div><div class="form-group-custom form-group-custom-select2 required"><label for="country-select">Country</label><select id="country-select" data-placeholder="Select your country" class="full-width" name="country" required></select></div><div class="hidden alert alert-danger margin-top3 border-radius-2px"><small class="text"></small></div><button id="btnCredentialsNext" name="next" data-style="expand-right" class="next action-button ladda-button"><span class="ladda-label">Next</span></button></fieldset><fieldset id="marketplace"><h3 class="fs-subtitle">Give a name to your Marketplace</h3><div class="form-group-custom required"><label for="marketplaceName">Marketplace Name</label><input id="marketplaceName" class="form-control" type="text" name="marketplaceName" required></div><div class="form-group-custom required"><label for="password">Password</label><input id="password" class="form-control" type="password" name="password" required></div><div class="form-group-custom required"><label for="repeatPassword">Password Again</label><input id="repeatPassword" class="form-control" type="password" name="repeatPassword" required></div><div class="hidden alert alert-danger margin-top3 border-radius-2px"><small class="text"></small></div><div class="hidden alert alert-info margin-top3 border-radius-2px"><small class="text"></small></div><button id="btnCreateMarketplace" name="next" data-style="expand-right" style="width: 100% !important; margin: 20px 0px" class="next action-button ladda-button"><span class="ladda-label">Create Marketplace</span></button></fieldset><fieldset id="success"><h3 class="fs-subtitle">Your Marketplace Has Been Created</h3><b>We have sent you an e-mail with instructions.</b><br><p>You will be redirected to your marketplace in 5 seconds.</p></fieldset></form></div></div></div><script>//jQuery time
+(function() {
+    //jQuery time
     var current_fs, next_fs; //fieldsets
     var left, opacity, scale; //fieldset properties which we will animate
     var animating; //flag to prevent quick multi-click glitches
@@ -269,20 +240,22 @@
                             $.post(VQ_TENANT_API_URL + "/trial-registration/getTenantStatus", {
                                 apiKey: data.apiKey
                             })
-                                .done(function (data) {
-                                    if (data.tenant) {
-                                        if (data.tenant.status === 3) {
+                                .done(function (rData) {
+                                    if (rData.tenant) {
+                                        if (rData.tenant.status === 3) {
                                             l.stop();
                                             showNext(elem)
                                             setTimeout(function() {
                                                 var href;
+
                                                 if (VQ_WEB_ENV === 'production') {
-                                                    href = 'https://' + data.tenant.tenantId + '.vq-labs.com/app/admin/get-started'
+                                                    href = 'https://' + data.tenantId + '.vq-labs.com/app/admin/get-started'
                                                 } else if (VQ_WEB_ENV === 'development') {
-                                                    href = 'http://' + data.tenant.tenantId + '.viciqloud.com/app/admin/get-started'
+                                                    href = 'http://' + data.tenantId + '.viciqloud.com/app/admin/get-started'
                                                 } else {
                                                     href = 'http://localhost:4000/app/admin/get-started'
                                                 }
+
                                                 window.location = href;
 
                                             }, 5000)
@@ -293,7 +266,6 @@
                                     l.stop();
                                 });
                         }, 2000);
-
                     }
                 }).fail(function (err) {
                     l.stop();
@@ -418,4 +390,5 @@
         placeholder: function () {
             $(this).data('placeholder');
         }
-    });</script></body></html>
+    });
+})();
