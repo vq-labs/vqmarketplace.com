@@ -1139,3 +1139,7 @@ ul {
 .border-radius-2px {
     border-radius: 2px !important;
 }
+
+.font-family-montserrat, .font-family-montserrat input {
+    font-family: Montserrat !important;
+}

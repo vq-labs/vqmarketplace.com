@@ -8,13 +8,17 @@ const fileinclude = require('gulp-file-include');
 const liveServer = require('gulp-live-server');
 const runSequence = require('run-sequence');
 
-const build = VQ_TENANT_API_URL => {
+const build = (VQ_TENANT_API_URL, env) => {
     gulp.src([ 'src/**/*.html' ])
     .pipe(replace({
         patterns: [
             {
                 match: 'VQ_TENANT_API_URL',
                 replacement: VQ_TENANT_API_URL
+            },
+            {
+                match: 'VQ_WEB_ENV',
+                replacement: env
             }
         ]
     }))
@@ -48,11 +52,11 @@ gulp.task('runServer', function() {
 });
 
 // production
-gulp.task('build', () => build('https://vqmarketplace.vq-labs.com/api'));
+gulp.task('build', () => build('https://vqmarketplace.vq-labs.com/api', 'production'));
 
-gulp.task('build:dev', () => build('http://vqmarketplace.viciqloud.com/api'));
+gulp.task('build:dev', () => build('http://vqmarketplace.viciqloud.com/api', 'development'));
 
-gulp.task('build:local', () => build('http://localhost:8081/api'));
+gulp.task('build:local', () => build('http://localhost:8081/api', 'local'));
 
 gulp.task('deploy', [ 'build' ], function() {
     const args = [ './**', '--region', 'eu-central-1', '--bucket', 'vq-labs.com', '--gzip' ];
