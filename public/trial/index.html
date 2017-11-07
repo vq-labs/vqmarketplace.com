@@ -39,6 +39,11 @@
         var url = window.location.href;
         var url = new URL(url);
         var verificationCode = url.searchParams.get("verificationCode");
+        var email = url.searchParams.get("email");
+
+        if (email) {
+
+        }
 
         if (verificationCode) {
 
@@ -271,24 +276,23 @@
                                             showNext(elem)
                                             setTimeout(function() {
                                                 var href;
-
                                                 if (VQ_WEB_ENV === 'production') {
-                                                    href = 'https://' + data.tenant.tenantId + '.vq-labs.com/app'
+                                                    href = 'https://' + data.tenant.tenantId + '.vq-labs.com/app/admin/get-started'
                                                 } else if (VQ_WEB_ENV === 'development') {
-                                                    href = 'https://' + data.tenant.tenantId + '.viciqloud.com/app'
+                                                    href = 'http://' + data.tenant.tenantId + '.viciqloud.com/app/admin/get-started'
                                                 } else {
-                                                    href = 'http://localhost:4000/app'
+                                                    href = 'http://localhost:4000/app/admin/get-started'
                                                 }
                                                 window.location = href;
 
-                                            },6000)
+                                            }, 5000)
                                         }
                                     }
                                 })
                                 .fail(function (err) {
                                     l.stop();
                                 });
-                        }, 500);
+                        }, 2000);
 
                     }
                 }).fail(function (err) {
