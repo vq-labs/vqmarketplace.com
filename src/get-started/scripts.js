@@ -1,4 +1,4 @@
-(function() {
+(function () {
     //jQuery time
     var current_fs, next_fs; //fieldsets
     var left, opacity, scale; //fieldset properties which we will animate
@@ -25,7 +25,16 @@
                     method: "POST",
                     url: VQ_TENANT_API_URL + "/trial-registration/step-2",
                     data: {
-                        verificationCode: decodeURIComponent(verificationCode)
+                        verificationCode: verificationCode
+                            .replace(/%40/gi, '@')
+                            .replace(/%3A/gi, ':')
+                            .replace(/%24/gi, '$')
+                            .replace(/%2C/gi, ',')
+                            .replace(/%3B/gi, ';')
+                            .replace(/%2B/gi, '+')
+                            .replace(/%3D/gi, ';')
+                            .replace(/%3F/gi, '?')
+                            .replace(/%2F/gi, '/')
                     }
                 }).done(function (data) {
                     if (data.tenant) {
@@ -156,8 +165,6 @@
                         current_fs.find('.alert-danger').removeClass('hidden').fadeIn();
                     }
                 });
-
-
                 break;
             case "marketplace":
                 if (parent.find('#firstname').val() === "") {
