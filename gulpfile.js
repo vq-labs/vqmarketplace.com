@@ -69,7 +69,7 @@ gulp.task('runServer', function() {
 // production
 gulp.task('build', () => build('https://vqmarketplace.vq-labs.com/api', 'production'));
 
-gulp.task('build:dev', () => build('http://vqmarketplace.viciqloud.com/api', 'development'));
+gulp.task('build:dev', () => build('https://vqmarketplace.viciqloud.com/api', 'development'));
 
 gulp.task('build:local', () => build('http://localhost:8081/api', 'local'));
 
