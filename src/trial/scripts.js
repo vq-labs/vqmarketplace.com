@@ -251,7 +251,7 @@
                                                 if (VQ_WEB_ENV === 'production') {
                                                     href = 'https://' + data.tenantId + '.vq-labs.com/app/admin/get-started'
                                                 } else if (VQ_WEB_ENV === 'development') {
-                                                    href = 'http://' + data.tenantId + '.viciqloud.com/app/admin/get-started'
+                                                    href = 'https://' + data.tenantId + '.viciqloud.com/app/admin/get-started'
                                                 } else {
                                                     href = 'http://localhost:4000/app/admin/get-started'
                                                 }
