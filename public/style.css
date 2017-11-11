@@ -237,7 +237,9 @@ section {
 
 .vq-main {
 
+
     background: url(/images/crowd.jpg) no-repeat center center fixed; 
+    background: url(/images/crowd.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -261,6 +263,15 @@ section {
 
 .vq-partner-program {
     background: url(./images/adrian.jpg) no-repeat center center fixed; 
+    background: url(/images/enterprise.jpg) no-repeat center center fixed;
+}
+
+.vq-asset-sharing-intro-img {
+    background: url(/images/asset-sharing.jpg) no-repeat center center fixed;
+}
+
+.vq-partner-program {
+    background: url(/images/adrian.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

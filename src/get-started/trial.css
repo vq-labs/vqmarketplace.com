@@ -23,7 +23,6 @@ button {
 
 /*form styles*/
 #msform {
-    width: 400px;
     margin: 50px auto;
     text-align: center;
     position: relative;
@@ -36,8 +35,8 @@ button {
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
     padding: 20px 30px;
     box-sizing: border-box;
-    width: 80%;
-    margin: 0 10%;
+    width: 90%;
+    margin: 0 5%;
 
     /*stacking fieldsets above each other*/
     position: relative;
@@ -202,6 +201,7 @@ input, input:focus {
     color: #000639;
     text-transform: uppercase;
     font-size: 9px;
+    font-weight:bold;
     width: 25%;
     float: left;
     position: relative;

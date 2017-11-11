@@ -29,6 +29,21 @@ const build = (VQ_TENANT_API_URL, env) => {
     .pipe(htmlmin({ collapseWhitespace: true }))
     .pipe(gulp.dest('public'));
 
+    gulp.src([ 'src/**/*.js' ])
+    .pipe(replace({
+        patterns: [
+            {
+                match: 'VQ_TENANT_API_URL',
+                replacement: VQ_TENANT_API_URL
+            },
+            {
+                match: 'VQ_WEB_ENV',
+                replacement: env
+            }
+        ]
+    }))
+    .pipe(gulp.dest('public'));
+
   gulp.src([ 'src/**/*.css' ])
     .pipe(fileinclude({
       prefix: '@@',
@@ -54,7 +69,7 @@ gulp.task('runServer', function() {
 // production
 gulp.task('build', () => build('https://vqmarketplace.vq-labs.com/api', 'production'));
 
-gulp.task('build:dev', () => build('http://vqmarketplace.viciqloud.com/api', 'development'));
+gulp.task('build:dev', () => build('https://vqmarketplace.viciqloud.com/api', 'development'));
 
 gulp.task('build:local', () => build('http://localhost:8081/api', 'local'));
 

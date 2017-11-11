@@ -4,5 +4,6 @@ npm-debug.log
 public
 =======
 public/**/*.html
+public/**/*.js
 node_modules/
 >>>>>>> trial
