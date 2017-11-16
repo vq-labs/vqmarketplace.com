@@ -242,7 +242,6 @@
                         current_fs.find('.alert.alert-info > .text').html('Your marketplace is being created. We will notify you when the process is complete.');
                         current_fs.find('.alert.alert-info').removeClass('hidden').fadeIn();
 
-
                         setInterval(function () {
                             $.post(VQ_TENANT_API_URL + "/trial-registration/getTenantStatus", {
                                 apiKey: data.apiKey
@@ -258,7 +257,7 @@
                                                 if (VQ_WEB_ENV === 'production') {
                                                     href = 'https://' + data.tenantId + '.vq-labs.com/app/admin/get-started'
                                                 } else if (VQ_WEB_ENV === 'development') {
-                                                    href = 'https://' + data.tenantId + '.viciqloud.com/app/admin/get-started'
+                                                    href = 'https://' + data.tenantId + '.vqmarketplace.com/app/admin/get-started'
                                                 } else {
                                                     href = 'http://localhost:4000/app/admin/get-started'
                                                 }
