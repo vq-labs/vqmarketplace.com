@@ -1,7 +1,7 @@
 {
   "name": "vq-labs",
   "version": "1.0.0",
-  "description": "Web page content for the vq-labs.com",
+  "description": "Web page content for the vqmarketplace.com",
   "main": "app.js",
   "dependencies": {
     "body-parser": "~1.14.2",
@@ -33,8 +33,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/adrianbarwicki/viciqloud.com"
+    "url": "https://github.com/vq-labs/viciqloud.com"
   },
-  "author": "Adrian Barwicki (adrianbarwicki@gmail.com)",
+  "author": "Adrian Barwicki",
   "license": "Apache License 2.0"
 }
