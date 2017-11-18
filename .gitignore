@@ -1,9 +1,6 @@
 node_modules
 npm-debug.log
-<<<<<<< HEAD
-public
-=======
 public/**/*.html
 public/**/*.js
 node_modules/
->>>>>>> trial
+
