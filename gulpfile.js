@@ -9,7 +9,7 @@ const liveServer = require('gulp-live-server');
 const runSequence = require('run-sequence');
 
 const build = (VQ_TENANT_API_URL, env) => {
-    gulp.src([ 'src/**/*.html' ])
+    gulp.src([ 'src/**/index.html' ])
     .pipe(replace({
         patterns: [
             {
@@ -49,6 +49,9 @@ const build = (VQ_TENANT_API_URL, env) => {
       prefix: '@@',
       basepath: '@file'
     }))
+    .pipe(gulp.dest('public'))
+
+    gulp.src([ 'assets/**/*' ])
     .pipe(gulp.dest('public'))
 };
 
