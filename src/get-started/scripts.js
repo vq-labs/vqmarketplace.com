@@ -20,6 +20,16 @@
             $('fieldset').hide();
 
             showNext('#btnAccountNext', function () {
+                /**
+                 * Tracking (2/5) - someone submitted an email
+                 */
+                ga('send', {
+                    hitType: 'event',
+                    eventCategory: 'Get Started',
+                    eventAction: 2,
+                    eventLabel: 'Someone submitted an email (2/5)'
+                });
+
                 $.ajax({
                     method: "POST",
                     url: VQ_TENANT_API_URL + "/trial-registration/step-2",
@@ -144,6 +154,17 @@
                     parent.find('#verificationCode').parent().removeClass('incomplete');
                 }
                 l.start();
+
+                /**
+                 * Tracking (3/5) - someone verified an email
+                 */
+                ga('send', {
+                    hitType: 'event',
+                    eventCategory: 'Get Started',
+                    eventAction: 3,
+                    eventLabel: 'Someone verified the email (3/5)'
+                });
+
                 $.ajax({
                     method: "POST",
                     url: VQ_TENANT_API_URL + "/trial-registration/step-2",
@@ -185,6 +206,17 @@
                     parent.find('#country-select').parent().removeClass('incomplete');
                 }
                 l.start();
+
+                /**
+                 * Tracking (4/5) - someone verified an email
+                 */
+                ga('send', {
+                    hitType: 'event',
+                    eventCategory: 'Get Started',
+                    eventAction: 4,
+                    eventLabel: 'Marketplace information has been submitted (4/5)'
+                });
+
                 $.ajax({
                     method: "POST",
                     url: VQ_TENANT_API_URL + "/trial-registration/step-3",
@@ -225,6 +257,17 @@
                 } else {
                     parent.find('#repeatPassword').parent().removeClass('incomplete');
                 }
+
+                /**
+                 * Tracking (5/5) - someone created a marketplace
+                 */
+                ga('send', {
+                    hitType: 'event',
+                    eventCategory: 'Get Started',
+                    eventAction: 5,
+                    eventLabel: 'Marketplace has been created'
+                });
+
                 l.start();
                 $.ajax({
                     method: "POST",
@@ -297,7 +340,6 @@
     });
 
     var showNext = function (el, cb) {
-
         current_fs = $(el).parent();
         next_fs = $(el).parent().next();
         current_fsId = $(el).parent().attr('id');
@@ -338,7 +380,6 @@
             //this comes from the custom easing plugin
             easing: 'easeInOutBack'
         });
-
     }
 
     $('.form-group-custom-select2').click(function () {
