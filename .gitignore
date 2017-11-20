@@ -1,6 +1,5 @@
 node_modules
 npm-debug.log
-public/**/*.html
-public/**/*.js
+public
 node_modules/
 
