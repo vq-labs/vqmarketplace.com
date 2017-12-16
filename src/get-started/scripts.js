@@ -123,12 +123,21 @@
                 } else {
                     parent.find('#email').parent().removeClass('incomplete');
                 }
+
+                if (parent.find('#source').val() === "" || document.getElementById('source').validationMessage !== "") {
+                    parent.find('#source').parent().addClass('incomplete');
+                    return false;
+                } else {
+                    parent.find('#source').parent().removeClass('incomplete');
+                }
+
                 l.start();
                 $.ajax({
                     method: "POST",
                     url: VQ_TENANT_API_URL + "/trial-registration/step-1",
                     data: {
-                        email: parent.find('#email').val()
+                        email: parent.find('#email').val(),
+                        source: parent.find('#source').val()
                     }
                 }).done(function (data) {
                     if (data.tenant) {

@@ -64,19 +64,19 @@ gulp.task('run', function(cb) {
     );
 });
 
-gulp.task('runServer', function() {
+gulp.task('runServer', [ "build" ], function() {
     var server = liveServer.static('./public');
     server.start();
 });
 
 // production
-gulp.task('build', () => build('https://vqmarketplace.vq-labs.com/api', 'production'));
+gulp.task('build', () => build('https://vqmarketplace.vqmarketplace.com/api', 'production'));
 
 gulp.task('build:dev', () => build('https://vqmarketplace.vqmarketplace.com/api', 'development'));
 
 gulp.task('build:local', () => build('http://localhost:8081/api', 'local'));
 
-gulp.task('deploy', [ 'build' ], function() {
+gulp.task('deploy', [  ], function() {
     const args = [ './**', '--region', 'eu-central-1', '--bucket', 'vqmarketplace.com', '--gzip' ];
     const npm = spawn("s3-deploy", args, { cwd: './public' });
 
