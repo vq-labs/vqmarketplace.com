@@ -19,6 +19,10 @@ const build = (VQ_TENANT_API_URL, env) => {
             {
                 match: 'VQ_WEB_ENV',
                 replacement: env
+            },
+            {
+                match: 'VQ_WEB_URL',
+                replacement: env === 'production' ? 'https://vqmarketplace.com' : 'http://localhost:3000'
             }
         ]
     }))
@@ -39,6 +43,10 @@ const build = (VQ_TENANT_API_URL, env) => {
             {
                 match: 'VQ_WEB_ENV',
                 replacement: env
+            },
+            {
+                match: 'VQ_WEB_URL',
+                replacement: env === 'production' ? 'https://vqmarketplace.com' : 'http://localhost:3000'
             }
         ]
     }))
