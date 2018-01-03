@@ -22,13 +22,13 @@ button {
 }
 
 /*form styles*/
-#msform {
+.form-wrapper {
     margin: 50px auto;
     text-align: center;
     position: relative;
 }
 
-#msform fieldset {
+.form-custom {
     background: white;
     border: 0 none;
     border-radius: 3px;
@@ -40,11 +40,6 @@ button {
 
     /*stacking fieldsets above each other*/
     position: relative;
-}
-
-/*Hide all except first fieldset*/
-#msform fieldset:not(:first-of-type) {
-    display: none;
 }
 
 /*inputs*/
@@ -61,6 +56,10 @@ button {
     overflow: hidden;
     -webkit-transition: background-color 0.2s ease;
     transition: background-color 0.2s ease;
+}
+
+.form-group-custom.form-group-select {
+    overflow: visible;
 }
 
 .form-control {
@@ -89,7 +88,7 @@ button {
     box-shadow: none;
 }
 
-.form-group-custom.focused {
+.form-group-custom-select.focused, .form-group-custom.focused {
     border-color: rgba(0, 0, 0, 0.1) !important;
     background-color: #f0f0f0;
 }
@@ -99,11 +98,15 @@ button {
     background-color: #f0f0f0;
 }
 
-.form-group-custom.required.incomplete {
+.form-group-custom-select.required.incomplete,
+.form-group-custom.required.incomplete
+{
     border-color: #f55753 !important;
 }
 
-.form-group-custom.required.incomplete > label {
+.form-group-custom-select.required.incomplete > label,
+.form-group-custom.required.incomplete > label
+{
     color: #f55753 !important;
 }
 
@@ -112,7 +115,7 @@ input, input:focus {
 }
 
 /*form label*/
-.form-group-custom label:not(.error) {
+.form-group-custom-select label:not(.error), .form-group-custom label:not(.error) {
     font-family: 'Montserrat';
     font-size: 13px;
     letter-spacing: 0.06em;
@@ -120,7 +123,7 @@ input, input:focus {
     font-weight: 500;
 }
 
-.form-group-custom label {
+.form-group-custom-select label, .form-group-custom label {
     text-align: left;
     margin: 0;
     display: block;
@@ -129,16 +132,20 @@ input, input:focus {
     transition: opacity 0.2s ease;
 }
 
-.form-group-custom.focused label {
+.form-group-custom-select.focused label, .form-group-custom.focused label {
     opacity: .4;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     backface-visibility: hidden;
 }
 
+.form-group-custom-select label {
+    position: relative;
+}
+
 /* form required */
 
-.form-group-custom.required:after {
+.form-group-custom-select.required:after, .form-group-custom.required:after {
     color: #f55753;
     content: "*";
     font-family: arial;
@@ -201,7 +208,7 @@ input, input:focus {
     color: #000639;
     text-transform: uppercase;
     font-size: 9px;
-    font-weight:bold;
+    font-weight: bold;
     width: 25%;
     float: left;
     position: relative;
@@ -330,111 +337,8 @@ input, input:focus {
     background-color: #fff;
 }
 
-/*select2*/
-
-.select2-container .select2-selection .select2-selection__rendered {
-    padding: 2px 12px 0 12px;
-    text-align: left;
-}
-
-.form-group-custom.form-group-custom-select2 .select2-container .select2-selection--single {
-    padding-top: 20px;
-    height: 52px;
-    border: 0 !important;
-}
-
-.select2-container .select2-selection {
-    background-image: none;
-    border: 0;
-    transition: border 0.2s linear 0s;
-}
-
-.select2-container .select2-selection .select2-selection__arrow {
-    top: auto;
-    bottom: 0px;
-    right: 0px !important;
-    left: auto;
-    background: transparent;
-    border-left: 0px;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
-
-.select2-selection select2-selection--single:focus {
-    outline: 0;
-}
-
-.select2-dropdown {
-    border: 1px solid rgba(0, 0, 0, 0.07);
-    border-bottom-right-radius: 2px;
-    border-bottom-left-radius: 2px;
-    padding-top: 5px;
-    z-index: 790;
-    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
-}
-
-.select2-results {
-    margin: 3px 8px 10px 8px;
-}
-
-.select2-search--dropdown input {
-    background: #fff !important;
-    vertical-align: baseline;
-    line-height: 28px;
-    border-radius: 2px;
-    border: none;
-    font-size: 12px;
-    border: 1px solid rgba(0, 0, 0, 0.07) !important;
-}
-
-.select2-results .select2-results__option--highlighted {
-    background-color: #e7e7e7 !important;
-    border-radius: 3px;
-    color: #575757 !important;
-}
-
 .flag-text {
     margin-left: 10px;
-}
-
-.full-width {
-    width: 100%;
-}
-
-select.full-width + .select2-container {
-    width: 100% !important;
-}
-
-.form-group-custom.form-group-custom-select2 {
-    padding: 0;
-}
-
-.form-group-custom.form-group-custom-select2 > label {
-    position: absolute;
-    z-index: 10;
-    padding: 7px 12px 0 12px;
-}
-
-.select2-container .select2-selection .select2-selection__arrow {
-    top: auto;
-    bottom: 5px;
-    right: 10px !important;
-    left: auto;
-    background: transparent;
-    border-left: 0px;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
-
-.select2-results__option {
-    padding: 10px;
-    padding-left: 1em;
-    margin-right: 6px;
-    margin-top: 5px
-}
-
-.select2-selection:focus {
-    outline: 0;
 }
 
 .ladda-button {

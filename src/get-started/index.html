@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="GetStartedApp" lang="en">
 
 <!--
 	01001001011011100111010001100101011100100110010101110011011101000110010101100100001000000110100101101110001000000111011101101111011100100110101101101001011011100110011100100000011000010111010000100000010101100110100101100011011010010101000101101100011011110111010101100100001111110010000001001000011001010111001001100101001000000110100101110011001000000111010001101000011001010010000001100101011011010110000101101001011011000010000001101111011001100010000001000011010001010100111100111010001000000110000101100100011100100110100101100001011011100010111001100010011000010111001001110111011010010110001101101011011010010100000001110110011010010110001101101001011100010110110001101111011101010110010000101110011000110110111101101101
@@ -25,18 +25,18 @@
 
     @@include('../analytics-code.html')
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/spin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda.min.js"></script>
+
+    <script src="./assets/vendor/angular/angular.min.js"></script>
+    <script src="./assets/vendor/angular/angular-sanitize.min.js"></script>
+    <script src="./assets/vendor/ui-select/select.min.js"></script>
+    <script src="./assets/js/get-started.controller.js"></script>
+
+
     <link rel="stylesheet" href="/bootstrap.min.css">
     <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/get-started/get-started.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda-themeless.min.css">
+    <link rel="stylesheet" href="./assets/css/get-started.css">
+    <link rel="stylesheet" href="./assets/vendor/ui-select/select.css">
+
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet"
@@ -82,57 +82,76 @@
     <!-- End Facebook Pixel Code -->
 </head>
 
-<body class="bg-gradient-ember font-family-montserrat">
+<body class="bg-gradient-ember font-family-montserrat" ng-controller="GetStartedController">
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-4 col-md-offset-4 col-xs-12 col-xs-offset-0">
-            <!-- multistep form -->
-            <form id="msform" autocomplete="off" autocomplete="false" nofill>
-                <!-- progressbar -->
+            <div class="form-wrapper">
                 <ul id="progressbar">
-                    <li class="active">Account</li>
-                    <li>Verification</li>
-                    <li>Credentials</li>
-                    <li>Marketplace</li>
+                    <li ng-class="{'active': data.step === 'account' || data.step === 'verification' || data.step === 'credentials' || data.step === 'marketplace'}">Account</li>
+                    <li ng-class="{'active': data.step === 'verification' || data.step === 'credentials' || data.step === 'marketplace'}">Verification</li>
+                    <li ng-class="{'active': data.step === 'credentials' || data.step === 'marketplace'}">Credentials</li>
+                    <li ng-class="{'active': data.step === 'marketplace'}">Marketplace</li>
                 </ul>
                 <p><img class="logo" src="https://vq-labs.com/vq-labs-logo-xs-2.png" alt=""></p>
-                <!-- fieldsets -->
-                <fieldset id="account">
+                <form id="account" name="account" class="form-custom" autocomplete="off"
+                      autocomplete="false"
+                      nofill
+                      ng-submit="submitStep('account')" ng-if="data.step === 'account'">
                     <h2 class="fs-title">Account Details</h2>
                     <h3 class="fs-subtitle">Enter your account details</h3>
-                    <div class="form-group-custom required">
+                    <div class="form-group-custom required"
+                         ng-class="{'incomplete': account.email.$touched && account.email.$invalid}">
                         <label for="email">E-Mail</label>
-                        <input id="email" class="form-control" type="email" name="email" required/>
+                        <input id="email" class="form-control"
+                               type="email" name="email" required
+                               ng-model="data.account.email.value"/>
                     </div>
-                    <div class="form-group-custom required">
-                        <label for="source">Where do you know us from?</label>
-                        <select class="form-control" id="source" required>
-                            <option disabled selected value>
-                            <option value="facebook">Facebook</option>
-                            <option value="google-search">Google Search</option>
-                            <option value="blog">Blog post</option>
-                            <option value="friend-referral">Friend Referral</option>
-                            <option value="conference">Conference</option>
-                            <option value="other">Other</option>
-                        </select>
+                    <div class="form-group-custom form-group-select required"
+                         ng-class="{'incomplete': account.referral.$touched && account.referral.$invalid}">
+                        <label for="referral">Where do you know us from?</label>
+                        <ui-select id="referral" name="referral"
+                                   ng-model="data.account.referral.value"
+                                   required>
+                            <ui-select-match>
+                                <span ng-bind="$select.selected.text"></span>
+                            </ui-select-match>
+                            <ui-select-choices
+                                    repeat="referral in (referrals) track by referral.id">
+                                <span ng-bind="referral.text"></span>
+                            </ui-select-choices>
+                        </ui-select>
                     </div>
-                    <div class="hidden alert alert-danger margin-top3 border-radius-2px">
-                        <small class="text"></small>
+                    <div class="alert alert-danger margin-top3 border-radius-2px"
+                         ng-if="data.account.errors.length !== 0">
+                        <small class="text" ng-repeat="error in data.account.errors">
+                            {{error}}
+                        </small>
                     </div>
-                    <button id="btnAccountNext" data-style="expand-right" name="next"
+                    <div class="alert alert-info margin-top3 border-radius-2px"
+                         ng-if="data.account.errors.length !== 0">
+                        <small class="text" ng-repeat="message in data.account.messages">
+                            {{message}}
+                        </small>
+                    </div>
+                    <button type="submit" id="btnAccountNext" data-style="expand-right" name="next"
                             class="next action-button ladda-button">
                         <span class="ladda-label">Next</span>
                     </button>
-                </fieldset>
+                </form>
 
-                <fieldset id="verification">
+                <form id="verification" class="form-custom" autocomplete="off" autocomplete="false"
+                      nofill
+                      ng-submit="submitStep('verification')" ng-if="data.step === 'verification'">
                     <h2 class="fs-title">Verification</h2>
                     <h3 class="fs-subtitle">Enter the verification code we have sent to your
                         e-mail</h3>
-                    <div class="form-group-custom required">
+                    <div class="form-group-custom required"
+                         ng-class="{'incomplete': verification.code.$touched && verification.code.$invalid}">
                         <label for="verificationCode">Verification</label>
                         <input id="verificationCode" class="form-control" type="text"
-                               name="verificationCode" required/>
+                               name="verificationCode" required
+                               ng-model="data.verification.code.value"/>
                     </div>
                     <br>
                     <p>
@@ -142,36 +161,56 @@
                             resending it</a>
                         </small>
                     </p>
-                    <div class="hidden alert alert-danger margin-top3 border-radius-2px">
-                        <small class="text"></small>
+                    <div class="alert alert-danger margin-top3 border-radius-2px"
+                         ng-if="data.verification.errors.length !== 0">
+                        <small class="text" ng-repeat="error in data.verification.errors">
+                            {{error}}
+                        </small>
                     </div>
-                    <div class="hidden alert alert-info margin-top3 border-radius-2px">
-                        <small class="text"></small>
+                    <div class="alert alert-info margin-top3 border-radius-2px"
+                         ng-if="data.verification.messages.length !== 0">
+                        <small class="text" ng-repeat="message in data.verification.messages">
+                            {{message}}
+                        </small>
                     </div>
                     <button id="btnVerificationNext" name="next" data-style="expand-right"
+                            type="submit"
                             class="next action-button ladda-button">
                         <span class="ladda-label">Next</span>
                     </button>
-                </fieldset>
+                </form>
 
-                <fieldset id="credentials">
+                <form id="credentials" class="form-custom" autocomplete="off" autocomplete="false"
+                      nofill
+                      ng-submit="submitStep('credentials')" ng-if="data.step === 'credentials'">
                     <h2 class="fs-title">Credentials</h2>
                     <h3 class="fs-subtitle">Enter your personal details</h3>
-                    <div class="form-group-custom required">
+                    <div class="form-group-custom required"
+                         ng-class="{'incomplete': credentials.firstname.$touched && credentials.firstname.$invalid}">
                         <label for="firstname">Firstname</label>
                         <input id="firstname" class="form-control" type="text" name="firstname"
-                               required/>
+                               required ng-model="data.credentials.firstname.value"/>
                     </div>
-                    <div class="form-group-custom required">
+                    <div class="form-group-custom required"
+                         ng-class="{'incomplete': credentials.lastname.$touched && credentials.lastname.$invalid}">
                         <label for="lastname">Lastname</label>
                         <input id="lastname" class="form-control" type="text" name="lastname"
-                               required/>
+                               required ng-model="data.credentials.lastname.value"/>
                     </div>
-                    <div class="form-group-custom form-group-custom-select2 required">
-                        <label for="country-select">Country</label>
-                        <select id="country-select" data-placeholder="Select your country"
-                                class="full-width"
-                                name="country" required></select>
+                    <div class="form-group-custom form-group-select required"
+                         ng-class="{'incomplete': credentials.country.$touched && credentials.country.$invalid}">
+                        <label for="country">Country</label>
+                        <ui-select id="country" name="country"
+                                   ng-model="data.credentials.country.value">
+                            <ui-select-match>
+                                <span ng-bind="$select.selected.text"></span>
+                            </ui-select-match>
+                            <ui-select-choices
+                                    repeat="country in (countries) track by country.id">
+                                <span ng-class="'flag-icon flag-icon-' + country.id.toLowerCase() + ' flag-icon-squared'"></span>
+                                <span class="flag-text" ng-bind="country.text"></span>
+                            </ui-select-choices>
+                        </ui-select>
                     </div>
                     <br>
                     <p>
@@ -180,59 +219,90 @@
                                 figure out how we can help you.</a>
                         </small>
                     </p>
-                    <div class="hidden alert alert-danger margin-top3 border-radius-2px">
-                        <small class="text"></small>
+                    <div class="alert alert-danger margin-top3 border-radius-2px"
+                         ng-if="data.credentials.errors.length !== 0">
+                        <small class="text" ng-repeat="error in data.credentials.errors">
+                            {{error}}
+                        </small>
+                    </div>
+                    <div class="alert alert-info margin-top3 border-radius-2px"
+                         ng-if="data.credentials.messages.length !== 0">
+                        <small class="text" ng-repeat="message in data.credentials.messages">
+                            {{message}}
+                        </small>
                     </div>
                     <button id="btnCredentialsNext" name="next" data-style="expand-right"
                             class="next action-button ladda-button">
                         <span class="ladda-label">Next</span>
                     </button>
-                </fieldset>
+                </form>
 
-                <fieldset id="marketplace">
+                <form id="marketplace" class="form-custom" autocomplete="off" autocomplete="false"
+                      nofill
+                      ng-submit="submitStep('marketplace')" ng-if="data.step === 'marketplace'">
                     <h3 class="fs-subtitle">Give a name to your Marketplace</h3>
                     <div class="form-group-custom required">
                         <label for="marketplaceName">Marketplace Name</label>
                         <input id="marketplaceName" class="form-control" type="text"
-                               name="marketplaceName" required/>
+                               name="marketplaceName" required
+                               ng-model="data.credentials.marketplaceName"/>
                     </div>
-                    <div class="form-group-custom form-group-custom-select2 required">
-                        <label for="marketplace-type-select">Marketplace Type</label>
-                        <select id="marketplace-type-select" data-placeholder="Select your marketplace type"
-                                class="full-width"
-                                name="marketplace-type" required></select>
+                    <div class="form-group-custom form-group-select required">
+                        <label for="marketplaceType">Marketplace Type</label>
+                        <ui-select id="marketplaceType" name="marketplaceType"
+                                   ng-model="data.credentials.marketplaceType.value">
+                            <ui-select-match>
+                                <span ng-bind="$select.selected.text"></span>
+                            </ui-select-match>
+                            <ui-select-choices
+                                    repeat="marketplaceType in (marketplaceTypes) track by marketplaceType.id">
+                                <span ng-bind="marketplaceType.text"></span>
+                            </ui-select-choices>
+                        </ui-select>
                     </div>
                     <div class="form-group-custom required">
                         <label for="password">Password</label>
                         <input id="password" class="form-control" type="password" name="password"
-                               required/>
+                               required ng-model="data.credentials.password.value"/>
                     </div>
                     <div class="form-group-custom required">
                         <label for="repeatPassword">Password Again</label>
                         <input id="repeatPassword" class="form-control" type="password"
-                               name="repeatPassword" required/>
+                               name="repeatPassword" required
+                               ng-model="data.credentials.repeatPassword.value"/>
                     </div>
-                    <div class="hidden alert alert-danger margin-top3 border-radius-2px">
-                        <small class="text"></small>
+                    <div class="alert alert-danger margin-top3 border-radius-2px"
+                         ng-if="data.marketplace.errors.length !== 0">
+                        <small class="text" ng-repeat="error in data.marketplace.errors">
+                            {{error}}
+                        </small>
                     </div>
-                    <div class="hidden alert alert-info margin-top3 border-radius-2px">
-                        <small class="text"></small>
+                    <div class="alert alert-info margin-top3 border-radius-2px"
+                         ng-if="data.marketplace.messages.length !== 0">
+                        <small class="text" ng-repeat="message in data.marketplace.messages">
+                            {{message}}
+                        </small>
                     </div>
                     <button id="btnCreateMarketplace" name="next" data-style="expand-right"
+                            type="submit"
                             style="width: 100% !important; margin: 20px 0px;"
                             class="next action-button ladda-button">
                         <span class="ladda-label">Create Marketplace</span>
                     </button>
-                </fieldset>
-                <fieldset id="success">
-                    <h3 class="fs-subtitle">Your marketplace is being created</h3>
-                    <b>We have sent you an e-mail with instructions.</b><br>
-                    <p>You will be redirected to your marketplace in 5 seconds.</p>
-                </fieldset>
-            </form>
+                </form>
+
+                <div class="alert alert-info border-radius-2px"
+                     ng-if="data.step === 'success'">
+                    <small class="text">
+                        Your marketplace is being created...</br>
+                        We have sent you an e-mail with instructions.</br>
+                        You will be redirected to your marketplace in 5 seconds.
+                    </small>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
-<script src="./scripts.js"></script>
 </body>
 </html>
