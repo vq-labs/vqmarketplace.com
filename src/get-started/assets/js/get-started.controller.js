@@ -1,6 +1,11 @@
-const app = angular.module("GetStartedApp", ['ngSanitize', 'ui.select']);
+const app = angular.module("GetStartedApp", ['ngSanitize', 'ui.select']).config(($locationProvider) => {
+  $locationProvider.html5Mode({
+    enabled: true,
+    requireBase: false
+  });
+});
 
-app.controller("GetStartedController", ($scope) => {
+app.controller("GetStartedController", ($scope, $http, $location) => {
   $scope.marketplaceTypes = [
     {
       id: 'services', text: 'Services'
@@ -54,22 +59,10 @@ app.controller("GetStartedController", ($scope) => {
     {id: 'ES', text: 'Spain'}
   ];
 
-    //   var url = window.location.href;
-    // var url = new URL(url);
-    // var verificationCode = url.searchParams.get("verificationCode");
-    // var email = url.searchParams.get("email");
-
-  //1: TENANT_EMAIL_TAKEN The e-mail you provided is already registered.
-  //2: WRONG_DATA The code you provided does not match the code we have sent you via e-mail. Please copy and paste it again or use the link inside your e-mail to proceed with the registration.
-  //4: MARKETPLACE_NAME_NOT_ALLOWED The marketplace name you provided is not allowed. Please pick another name to proceed with the registration.
-  //4: WRONG_API_KEY There was a mismatch of data between the client and the server. Please click the link inside the e-mail we have sent you to proceed with the registration.
-  //4: EMAIL_NOT_VERIFIED You e-mail is not verified. Please click the link inside the e-mail we have sent you to proceed with the registration.
-  //4: API_KEY_USED Your marketplace has already been created. We have sent you an e-mail with the instructions on how to view your marketplace.
-
   $scope.data = {
     account: {
-      email: {value: '', status: null},
-      referral: {value: '', status: null},
+      email: '',
+      referral: '',
       isSubmitted: false,
       isSubmitting: false,
       errors: [],
@@ -77,245 +70,331 @@ app.controller("GetStartedController", ($scope) => {
 
     },
     verification: {
-      code: {value: '', status: null},
+      code: '',
       isSubmitted: false,
       isSubmitting: false,
       errors: [],
       messages: [],
     },
     credentials: {
-      firstname: {value: '', status: null},
-      lastname: {value: '', status: null},
-      country: {value: '', status: null},
+      firstname: '',
+      lastname: '',
+      country: '',
       isSubmitted: false,
       isSubmitting: false,
       errors: [],
       messages: [],
     },
     marketplace: {
-      marketplaceName: {value: '', status: null},
-      marketplaceType: {value: '', status: null},
-      password: {value: '', status: null},
-      repeatPassword: {value: '', status: null},
+      marketplaceName: '',
+      marketplaceType: '',
+      password: '',
+      repeatPassword: '',
       isSubmitted: false,
       isSubmitting: false,
       errors: [],
       messages: [],
     },
-    transitioning: false,
-    step: 'account'
+    step: 'account',
+    tenant: {}
   };
 
+  $onInit = () => {
+    if ($location.search().verificationCode) {
+      /**
+       * Tracking (2/5) - someone submitted an email
+       */
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'Get Started',
+        eventAction: 2,
+        eventLabel: 'Someone submitted an email (2/5)'
+      });
+
+      $http({
+        method: "POST",
+        url: VQ_TENANT_API_URL + "/trial-registration/step-2",
+        data: {
+          verificationCode: $location.search().verificationCode
+            .replace(/%40/gi, '@')
+            .replace(/%3A/gi, ':')
+            .replace(/%24/gi, '$')
+            .replace(/%2C/gi, ',')
+            .replace(/%3B/gi, ';')
+            .replace(/%2B/gi, '+')
+            .replace(/%3D/gi, ';')
+            .replace(/%3F/gi, '?')
+            .replace(/%2F/gi, '/')
+        }
+      }).then((response) => {
+        if (response.data.tenant) {
+          $scope.data.tenant = angular.merge({}, $scope.data.tenant, response.data.tenant);
+          $scope.data.verification.isSubmitting = false;
+          $scope.data.step = 'credentials';
+        }
+      }).catch((err) => {
+        if (err.status === 400) {
+          if (err.data.code === "WRONG_DATA") {
+            $scope.data.verification.isSubmitting = false;
+            $scope.data.verification.errors.push('The code you provided does not match the code we have sent you via e-mail. Please copy and paste it again or use the link inside your e-mail to proceed with the registration.');
+            $scope.data.step = 'verification';
+          } else if (err.data.code === "EMAIL_ALREADY_VERIFIED") {
+            $scope.data.verification.isSubmitting = false;
+            $scope.data.step = 'verification';
+            $scope.data.verification.errors.push('Your e-mail has been already verified. Please check the instructions we have sent you via e-mail.');
+          }
+        }
+      });
+    }
+  }
+
   $scope.resendVerificationCode = () => {
-    // $.post(VQ_TENANT_API_URL + "/trial-registration/resendVerificationCode", {
-    //   apiKey: tenant.apiKey
-    // })
-    //   .done(function (data) {
-    //     if (data.tenant) {
-    //       next_fs.find('.alert-info > .text').html('Verification code has been resent to your e-mail. Please check the spam folder in case you have not received it yet.');
-    //       next_fs.find('.alert-info').removeClass('hidden').fadeIn();
-    //     }
-    //   })
-    //   .fail(function (err) {
-    //     next_fs.find('.alert-info').hide();
-    //     if (err.responseJSON.code === "WRONG_DATA") {
-    //       next_fs.find('.alert-danger > .text').html('The code you provided does not match the code we have sent you via e-mail. Please copy and paste it again or use the link inside your e-mail to proceed with the registration.');
-    //       next_fs.find('.alert-danger').removeClass('hidden').fadeIn();
-    //     }
-    //     if (err.responseJSON.code === "EMAIL_ALREADY_VERIFIED" && err.responseJSON.tenantStatus === 3) {
-    //       next_fs.find('.alert-danger > .text').html('Your e-mail has been already verified. Please check the instructions we have sent you via e-mail.');
-    //       next_fs.find('.alert-danger').removeClass('hidden').fadeIn();
-    //     } else {
-    //       showNext(next_fs.find('button'));
-    //     }
-    //   });
+    $http({
+      method: "POST",
+      url: VQ_TENANT_API_URL + "/trial-registration/resendVerificationCode",
+      apiKey: $scope.data.tenant.apiKey
+    })
+      .then((response) => {
+        if (response.data.tenant && $scope.data.verification.messages.indexOf('Verification code has been resent to your e-mail. Please check the spam folder in case you have not received it yet.') === -1) {
+          $scope.data.verification.messages.push('Verification code has been resent to your e-mail. Please check the spam folder in case you have not received it yet.');
+        }
+      })
+      .catch((err) => {
+        if (err.status === 400) {
+          if (err.data.code === "WRONG_DATA") {
+            $scope.data.verification.errors.push('The code you provided does not match the code we have sent you via e-mail. Please copy and paste it again or use the link inside your e-mail to proceed with the registration.');
+          }
+          if (err.data.code === "EMAIL_ALREADY_VERIFIED" && err.data.tenantStatus === 3) {
+            $scope.data.verification.errors.push('Your e-mail has been already verified. Please check the instructions we have sent you via e-mail.');
+          }
+        }
+      });
   }
 
   $scope.submitStep = (step) => {
     switch (step) {
       case 'account': {
-        // if ($scope.data.account.email.value === '' || $scope.data.account.referral.value === '') {
-        //   $scope.data.account.errors.account.push('Please fill in all required (*) fields.');
-        // }
+        $scope.data.account.errors = [];
 
-        //         $.ajax({
-        //   method: "POST",
-        //   url: VQ_TENANT_API_URL + "/trial-registration/step-1",
-        //   data: {
-        //     email: parent.find('#email').val(),
-        //     source: parent.find('#source').val()
-        //   }
-        // }).done(function (data) {
-        //   if (data.tenant) {
-        //     tenant = $.extend({}, tenant, data.tenant);
-        //     current_fs.find('.alert-danger').hide();
-        //     l.stop();
-        //     showNext(elem)
-        //   }
-        // }).fail(function (err) {
-        //   l.stop();
-        //   if (err.responseJSON.code === "TENANT_EMAIL_TAKEN") {
-        //     current_fs.find('.alert-danger > .text').html('The e-mail you provided is already registered.');
-        //     current_fs.find('.alert-danger').removeClass('hidden').fadeIn();
-        //   }
-        // });
+        if ($scope.data.account.email === '' || $scope.data.account.referral === '') {
+          $scope.data.account.errors.push('Please fill in all required (*) fields.');
+          return;
+        }
 
-        $scope.data.step = 'verification';
+        $scope.data.account.errors = [];
+        $scope.data.account.isSubmitting = true;
+
+        $http({
+          method: "POST",
+          url: VQ_TENANT_API_URL + "/trial-registration/step-1",
+          data: {
+            email: $scope.data.account.email,
+            source: $scope.data.account.referral
+          }
+        }).then((response) => {
+          if (response.data.tenant) {
+            $scope.data.account.isSubmitting = false;
+            $scope.data.tenant = angular.merge({}, $scope.data.tenant, response.data.tenant);
+            $scope.data.step = 'verification';
+          }
+        }).catch((err) => {
+          if (err.status === 400) {
+            if (err.data.code === "TENANT_EMAIL_TAKEN") {
+              $scope.data.account.isSubmitting = false;
+              $scope.data.account.errors.push('The e-mail you provided is already registered.');
+            }
+          }
+        });
         break;
       }
       case 'verification': {
+        $scope.data.verification.errors = [];
 
-        // /**
-        //  * Tracking (3/5) - someone verified an email
-        //  */
-        // ga('send', {
-        //   hitType: 'event',
-        //   eventCategory: 'Get Started',
-        //   eventAction: 3,
-        //   eventLabel: 'Someone verified the email (3/5)'
-        // });
-        //
-        // $.ajax({
-        //   method: "POST",
-        //   url: VQ_TENANT_API_URL + "/trial-registration/step-2",
-        //   data: {
-        //     verificationCode: parent.find('#verificationCode').val()
-        //   }
-        // }).done(function (data) {
-        //   if (data.tenant) {
-        //     tenant = $.extend({}, tenant, data.tenant);
-        //     current_fs.find('.alert-danger').hide();
-        //     l.stop();
-        //     showNext(elem)
-        //   }
-        // }).fail(function (err) {
-        //   l.stop();
-        //   if (err.responseJSON.code === "WRONG_DATA") {
-        //     current_fs.find('.alert-danger > .text').html('The code you provided does not match the code we have sent you via e-mail. Please copy and paste it again or use the link inside your e-mail to proceed with the registration.');
-        //     current_fs.find('.alert-danger').removeClass('hidden').fadeIn();
-        //   }
-        // });
+        if ($scope.data.verification.code === '') {
+          $scope.data.verification.errors.push('Please fill in all required (*) fields.');
+          return;
+        }
 
+        $scope.data.verification.errors = [];
+        $scope.data.verification.isSubmitting = true;
 
-        $scope.data.step = 'credentials';
+        /**
+         * Tracking (3/5) - someone verified an email
+         */
+        ga('send', {
+          hitType: 'event',
+          eventCategory: 'Get Started',
+          eventAction: 3,
+          eventLabel: 'Someone verified the email (3/5)'
+        });
+
+        $http({
+          method: "POST",
+          url: VQ_TENANT_API_URL + "/trial-registration/step-2",
+          data: {
+            verificationCode: $scope.data.verification.code
+              .replace(/%40/gi, '@')
+              .replace(/%3A/gi, ':')
+              .replace(/%24/gi, '$')
+              .replace(/%2C/gi, ',')
+              .replace(/%3B/gi, ';')
+              .replace(/%2B/gi, '+')
+              .replace(/%3D/gi, ';')
+              .replace(/%3F/gi, '?')
+              .replace(/%2F/gi, '/')
+          }
+        }).then((response) => {
+          if (response.data.tenant) {
+            $scope.data.verification.isSubmitting = false;
+            $scope.data.tenant = angular.merge({}, $scope.data.tenant, response.data.tenant);
+            $scope.data.step = 'credentials';
+          }
+        }).catch((err) => {
+          if (err.status === 400) {
+            if (err.data.code === "WRONG_DATA") {
+              $scope.data.verification.isSubmitting = false;
+              $scope.data.verification.errors.push('The code you provided does not match the code we have sent you via e-mail. Please copy and paste it again or use the link inside your e-mail to proceed with the registration.');
+            }
+          }
+        });
         break;
       }
       case 'credentials': {
+        $scope.data.credentials.errors = [];
 
-        // /**
-        //  * Tracking (4/5) - someone verified an email
-        //  */
-        // ga('send', {
-        //   hitType: 'event',
-        //   eventCategory: 'Get Started',
-        //   eventAction: 4,
-        //   eventLabel: 'Marketplace information has been submitted (4/5)'
-        // });
-        //
-        // $.ajax({
-        //   method: "POST",
-        //   url: VQ_TENANT_API_URL + "/trial-registration/step-3",
-        //   data: {
-        //     apiKey: tenant.apiKey,
-        //     firstName: parent.find('#firstname').val(),
-        //     lastName: parent.find('#lastname').val(),
-        //     country: parent.find('#country-select').val()
-        //   }
-        // }).done(function (data) {
-        //   if (data.tenant) {
-        //     tenant = $.extend({}, tenant, data.tenant);
-        //     current_fs.find('.alert-danger').hide();
-        //     l.stop();
-        //     showNext(elem)
-        //   }
-        // }).fail(function () {
-        //   l.stop();
-        // });
+        if ($scope.data.credentials.firstname === '' || $scope.data.credentials.lastname === '' || $scope.data.credentials.country === '') {
+          $scope.data.credentials.errors.push('Please fill in all required (*) fields.');
+          return;
+        }
 
-        $scope.data.step = 'marketplace';
+        $scope.data.credentials.errors = [];
+        $scope.data.credentials.isSubmitting = true;
+
+        /**
+         * Tracking (4/5) - someone verified an email
+         */
+        ga('send', {
+          hitType: 'event',
+          eventCategory: 'Get Started',
+          eventAction: 4,
+          eventLabel: 'Marketplace information has been submitted (4/5)'
+        });
+
+        $http({
+          method: "POST",
+          url: VQ_TENANT_API_URL + "/trial-registration/step-3",
+          data: {
+            apiKey: $scope.data.tenant.apiKey,
+            firstName: $scope.data.credentials.firstname,
+            lastName: $scope.data.credentials.lastname,
+            country: $scope.data.credentials.country
+          }
+        }).then((response) => {
+          if (response.data.tenant) {
+            $scope.data.credentials.isSubmitting = false;
+            $scope.data.tenant = angular.merge({}, $scope.data.tenant, response.data.tenant);
+            $scope.data.step = 'marketplace';
+          }
+        }).catch((err) => {
+          if (err) {
+            $scope.data.credentials.isSubmitting = false;
+            $scope.data.credentials.errors.push('The network encountered an error, please try again.');
+          }
+        });
         break;
       }
       case 'marketplace': {
+        $scope.data.marketplace.errors = [];
+        if ($scope.data.marketplace.marketplaceName === '' || $scope.data.marketplace.marketplaceType === '' || $scope.data.marketplace.password === '' || $scope.data.marketplace.repeatPassword === '') {
+          $scope.data.marketplace.errors.push('Please fill in all required (*) fields.');
+          return;
+        } else if ($scope.data.marketplace.password !== $scope.data.marketplace.repeatPassword) {
+          $scope.data.marketplace.errors.push('Please make sure that both of your passwords match.');
+        }
+
+        $scope.data.marketplace.errors = [];
+        $scope.data.marketplace.isSubmitting = true;
+
+        /**
+         * Tracking (5/5) - someone created a marketplace
+         */
+        ga('send', {
+          hitType: 'event',
+          eventCategory: 'Get Started',
+          eventAction: 5,
+          eventLabel: 'Marketplace has been created'
+        });
+
+        $http({
+          method: "POST",
+          url: VQ_TENANT_API_URL + "/trial-registration/step-4",
+          data: {
+            apiKey: $scope.data.tenant.apiKey,
+            marketplaceName: $scope.data.marketplace.marketplaceName,
+            marketplaceType: $scope.data.marketplace.marketplaceType,
+            password: $scope.data.marketplace.password,
+            repeatPassword: $scope.data.marketplace.repeatPassword,
+          }
+        }).then((response) => {
+          if (response.data.status === 1) {
+            $scope.data.marketplace.messages.push('Your marketplace is being created. We will notify you when the process is complete.');
+
+            setInterval(() => {
+              $http({
+                method: "POST",
+                url: VQ_TENANT_API_URL + "/trial-registration/getTenantStatus",
+                apiKey: $scope.data.tenant.apiKey
+              })
+                .then((rData) => {
+                  if (rData.tenant) {
+                    if (rData.tenant.status === 3) {
+                      $scope.data.marketplace.isSubmitting = false;
+                      $scope.data.step = 'success';
+                      setTimeout(() => {
+                        let href;
+
+                        if (VQ_WEB_ENV === 'production') {
+                          href = 'https://' + data.tenantId + '.vq-labs.com/app/admin/get-started'
+                        } else if (VQ_WEB_ENV === 'development') {
+                          href = 'https://' + data.tenantId + '.vqmarketplace.com/app/admin/get-started'
+                        } else {
+                          href = 'http://localhost:4000/app/admin/get-started'
+                        }
+
+                        window.location = href;
+
+                      }, 5000)
+                    }
+                  }
+                })
+                .catch((err) => {
+                  if (err.status === 400) {
+                    $scope.data.marketplace.isSubmitting = false;
+                    $scope.data.marketplace.errors.push('There was a problem creating your marketplace. Please try again.');
+                  }
+                });
+            }, 2000);
+          }
+        }).catch((err) => {
+          if (err.status === 400) {
+            $scope.data.marketplace.isSubmitting = false;
+            if (err.data.code === "MARKETPLACE_NAME_NOT_ALLOWED") {
+              $scope.data.marketplace.errors.push('The marketplace name you provided is not allowed. Please pick another name to proceed with the registration.');
+            } else if (err.data.code === "WRONG_API_KEY") {
+              $scope.data.marketplace.errors.push('There was a mismatch of data between the client and the server. Please click the link inside the e-mail we have sent you to proceed with the registration.');
+            } else if (err.data.code === "EMAIL_NOT_VERIFIED") {
+              $scope.data.marketplace.errors.push('You e-mail is not verified. Please click the link inside the e-mail we have sent you to proceed with the registration.');
+            } else if (err.data.code === "API_KEY_USED") {
+              $scope.data.marketplace.errors.push('Your marketplace has already been created. We have sent you an e-mail with the instructions on how to view your marketplace.');
+            }
+          }
 
 
-        // /**
-        //  * Tracking (5/5) - someone created a marketplace
-        //  */
-        // ga('send', {
-        //   hitType: 'event',
-        //   eventCategory: 'Get Started',
-        //   eventAction: 5,
-        //   eventLabel: 'Marketplace has been created'
-        // });
-        //
-        // l.start();
-        // $.ajax({
-        //   method: "POST",
-        //   url: VQ_TENANT_API_URL + "/trial-registration/step-4",
-        //   data: {
-        //     apiKey: tenant.apiKey,
-        //     marketplaceName: parent.find('#marketplaceName').val(),
-        //     marketplaceType: parent.find('#marketplaceType').val(),
-        //     password: parent.find('#password').val(),
-        //     repeatPassword: parent.find('#repeatPassword').val(),
-        //   }
-        // }).done(function (data) {
-        //   if (data.status === 1) {
-        //     current_fs.find('.alert.alert-danger').hide();
-        //     current_fs.find('.alert.alert-info > .text').html('Your marketplace is being created. We will notify you when the process is complete.');
-        //     current_fs.find('.alert.alert-info').removeClass('hidden').fadeIn();
-        //
-        //     setInterval(function () {
-        //       $.post(VQ_TENANT_API_URL + "/trial-registration/getTenantStatus", {
-        //         apiKey: data.apiKey
-        //       })
-        //         .done(function (rData) {
-        //           if (rData.tenant) {
-        //             if (rData.tenant.status === 3) {
-        //               l.stop();
-        //               showNext(elem)
-        //               setTimeout(function () {
-        //                 var href;
-        //
-        //                 if (VQ_WEB_ENV === 'production') {
-        //                   href = 'https://' + data.tenantId + '.vq-labs.com/app/admin/get-started'
-        //                 } else if (VQ_WEB_ENV === 'development') {
-        //                   href = 'https://' + data.tenantId + '.vqmarketplace.com/app/admin/get-started'
-        //                 } else {
-        //                   href = 'http://localhost:4000/app/admin/get-started'
-        //                 }
-        //
-        //                 window.location = href;
-        //
-        //               }, 5000)
-        //             }
-        //           }
-        //         })
-        //         .fail(function (err) {
-        //           l.stop();
-        //         });
-        //     }, 2000);
-        //   }
-        // }).fail(function (err) {
-        //   l.stop();
-        //   if (err.responseJSON.code === "MARKETPLACE_NAME_NOT_ALLOWED") {
-        //     current_fs.find('.alert-danger > .text').html('The marketplace name you provided is not allowed. Please pick another name to proceed with the registration.');
-        //     current_fs.find('.alert-danger').removeClass('hidden').fadeIn();
-        //   } else if (err.responseJSON.code === "WRONG_API_KEY") {
-        //     current_fs.find('.alert-danger > .text').html('There was a mismatch of data between the client and the server. Please click the link inside the e-mail we have sent you to proceed with the registration.');
-        //     current_fs.find('.alert-danger').removeClass('hidden').fadeIn();
-        //   } else if (err.responseJSON.code === "EMAIL_NOT_VERIFIED") {
-        //     current_fs.find('.alert-danger > .text').html('You e-mail is not verified. Please click the link inside the e-mail we have sent you to proceed with the registration.');
-        //     current_fs.find('.alert-danger').removeClass('hidden').fadeIn();
-        //   } else if (err.responseJSON.code === "API_KEY_USED") {
-        //     current_fs.find('.alert-danger > .text').html('Your marketplace has already been created. We have sent you an e-mail with the instructions on how to view your marketplace.');
-        //     current_fs.find('.alert-danger').removeClass('hidden').fadeIn();
-        //   }
-        // });
-
-        $scope.data.step = 'success';
+        });
         break;
       }
     }
   };
+
+  $onInit();
 });
