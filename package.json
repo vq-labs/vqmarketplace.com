@@ -28,7 +28,9 @@
     "s3-deploy": "^0.8.0"
   },
   "scripts": {
-    "start": "gulp run",
+    "start": "gulp run:prod",
+    "start:dev": "gulp run:dev",
+    "start:local": "gulp run:local",
     "aws-config": "source ~/.bash_profile",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -52,7 +52,7 @@ const build = (VQ_TENANT_API_URL, env) => {
     }))
     .pipe(gulp.dest('public'));
 
-  gulp.src([ 'src/**/*.css' ])
+    gulp.src([ 'src/**/*.css' ])
     .pipe(fileinclude({
       prefix: '@@',
       basepath: '@file'
@@ -63,7 +63,22 @@ const build = (VQ_TENANT_API_URL, env) => {
     .pipe(gulp.dest('public'))
 };
 
-gulp.task('run', function(cb) {
+gulp.task('run:prod', function(cb) {
+    runSequence(
+        'build:prod',
+        'runServer',
+        cb
+    );
+});
+gulp.task('run:dev', function(cb) {
+    runSequence(
+        'build:dev',
+        'watch:dev',
+        'runServer',
+        cb
+    );
+});
+gulp.task('run:local', function(cb) {
     runSequence(
         'build:local',
         'watch:local',
@@ -72,19 +87,20 @@ gulp.task('run', function(cb) {
     );
 });
 
-gulp.task('runServer', [ "build" ], function() {
+gulp.task('build:prod', () => build('https://vqmarketplace.vqmarketplace.com/api', 'production'));
+gulp.task('build:dev', () => build('https://vqmarketplace.vqmarketplace.com/api', 'development'));
+gulp.task('build:local', () => build('http://localhost:8081/api', 'local'));
+
+gulp.task('watch:prod', () => gulp.watch('./src/**/**',  [ 'build:prod' ]));
+gulp.task('watch:dev', () => gulp.watch('./src/**/**',  [ 'build:dev' ]));
+gulp.task('watch:local', () => gulp.watch('./src/**/**',  [ 'build:local' ]));
+
+gulp.task('runServer', function() {
     var server = liveServer.static('./public');
     server.start();
 });
 
-// production
-gulp.task('build', () => build('https://vqmarketplace.vqmarketplace.com/api', 'production'));
-
-gulp.task('build:dev', () => build('https://vqmarketplace.vqmarketplace.com/api', 'development'));
-
-gulp.task('build:local', () => build('http://localhost:8081/api', 'local'));
-
-gulp.task('deploy', [  ], function() {
+gulp.task('deploy', function() {
     const args = [ './**', '--region', 'eu-central-1', '--bucket', 'vqmarketplace.com', '--gzip' ];
     const npm = spawn("s3-deploy", args, { cwd: './public' });
 
@@ -100,7 +116,3 @@ gulp.task('deploy', [  ], function() {
         console.log(code !== 0 ? 'error in build' : 0);
     });
 });
-
-gulp.task('watch', () => gulp.watch('./src/**/**',  [ 'build' ]));
-gulp.task('watch:dev', () => gulp.watch('./src/**/**',  [ 'build:dev' ]));
-gulp.task('watch:local', () => gulp.watch('./src/**/**',  [ 'build:local' ]));
