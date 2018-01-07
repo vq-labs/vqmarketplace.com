@@ -348,7 +348,6 @@ app.controller("GetStartedController", ($scope, $http, $location) => {
                 }
               })
                 .then((rData) => {
-                console.log('rData', rData)
                   if (rData.data.tenant) {
                     if (rData.data.tenant.status === 3) {
                       $scope.data.marketplace.isSubmitting = false;
