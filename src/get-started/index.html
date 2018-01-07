@@ -273,7 +273,7 @@
                                 <span ng-bind="$select.selected.text"></span>
                             </ui-select-match>
                             <ui-select-choices
-                                    repeat="marketplaceType in (marketplaceTypes) track by marketplaceType.id">
+                                    repeat="marketplaceType.id as marketplaceType in (marketplaceTypes) track by marketplaceType.id">
                                 <span ng-bind="marketplaceType.text"></span>
                             </ui-select-choices>
                         </ui-select>
