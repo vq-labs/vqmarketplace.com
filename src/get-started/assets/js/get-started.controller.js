@@ -343,11 +343,14 @@ app.controller("GetStartedController", ($scope, $http, $location) => {
               $http({
                 method: "POST",
                 url: VQ_TENANT_API_URL + "/trial-registration/getTenantStatus",
-                apiKey: $scope.data.tenant.apiKey
+                data: {
+                  apiKey: $scope.data.tenant.apiKey
+                }
               })
                 .then((rData) => {
-                  if (rData.tenant) {
-                    if (rData.tenant.status === 3) {
+                console.log('rData', rData)
+                  if (rData.data.tenant) {
+                    if (rData.data.tenant.status === 3) {
                       $scope.data.marketplace.isSubmitting = false;
                       $scope.data.step = 'success';
                       setTimeout(() => {
