@@ -38,6 +38,7 @@ app.controller("GetStartedController", ($scope, $http, $location) => {
     {id: 'AD', text: 'Andorra'},
     {id: 'AT', text: 'Austria'},
     {id: 'BE', text: 'Belgium'},
+    {id: 'CA', text: 'Canada'},
     {id: 'CY', text: 'Cyprus'},
     {id: 'EE', text: 'Estonia'},
     {id: 'FI', text: 'Finland'},
@@ -56,7 +57,8 @@ app.controller("GetStartedController", ($scope, $http, $location) => {
     {id: 'SM', text: 'San Marino'},
     {id: 'SK', text: 'Slovakia'},
     {id: 'SI', text: 'Slovenia'},
-    {id: 'ES', text: 'Spain'}
+    {id: 'ES', text: 'Spain'},
+    {id: 'US', text: 'United States'}
   ];
 
   $scope.data = {
