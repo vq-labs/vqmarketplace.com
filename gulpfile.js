@@ -1,4 +1,5 @@
 'use strict';
+require('dotenv').config();
 
 const gulp = require('gulp');
 const htmlmin = require('gulp-htmlmin');
@@ -32,6 +33,7 @@ gulp.task('runServer', function () {
 
 // production
 gulp.task('build', function () {
+
   gulp.src(['src/**/index.html'])
     .pipe(replace({
       patterns: [
@@ -40,8 +42,8 @@ gulp.task('build', function () {
           replacement: process.env.TENANT_API_URL
         },
         {
-          match: 'VQ_WEB_ENV',
-          replacement: process.env.ENV
+          match: 'VQ_WEB_APP_URL',
+          replacement: process.env.WEB_APP_URL
         }
       ]
     }))
@@ -60,8 +62,8 @@ gulp.task('build', function () {
           replacement: process.env.TENANT_API_URL
         },
         {
-          match: 'VQ_WEB_ENV',
-          replacement: process.env.ENV
+          match: 'VQ_WEB_APP_URL',
+          replacement: process.env.WEB_APP_URL
         }
       ]
     }))

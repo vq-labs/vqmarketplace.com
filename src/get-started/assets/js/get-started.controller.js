@@ -355,10 +355,10 @@ app.controller("GetStartedController", ($scope, $http, $location) => {
                       setTimeout(() => {
                         let href;
 
-                        if (VQ_WEB_ENV === 'production' || VQ_WEB_ENV === 'development') {
-                          href = 'https://' + data.tenantId + '.vqmarketplace.com/app/admin/get-started'
+                        if (VQ_WEB_APP_URL.toLowerCase() === 'production') {
+                          href = (VQ_WEB_APP_URL + '/app/admin/get-started').replace('?tenantId', data.tenantId)
                         } else {
-                          href = 'http://localhost:4000/app/admin/get-started'
+                          href = VQ_WEB_APP_URL + '/app/admin/get-started'
                         }
 
                         window.location = href;

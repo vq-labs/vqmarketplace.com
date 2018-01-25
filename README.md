@@ -8,21 +8,14 @@ bootstrap 3, npm, gulp with html/css/js/json/img minify + uglify
 All the html sources can be found in the "src" folder. Modify the files in there and run "gulp build" in the root folder to get all the dependencies and minified versions of your CSS/JS/HTML files generated for you.
 Images, css and other files that do not require pre-processing you will find in the "public" folder.
 
-# How to install?
+# How to start?
 ```
-git clone https://github.com/adrianbarwicki/vq-labs.com 
+npm install
 
-cd vq-labs.com
-
-npm install 
+npm start
 ```
 # Development
-Run one of the following commands to start the app:
-```
-npm start (starts the app in production)
-npm run start:dev (starts the app in development)
-npm run start:local (starts the app in local)
-```
+If your environment in .env file is not 'production', then npm start command will automatically watch changes for you.
 
 # Deployment
 Make sure that you have s3-deploy installed globally:
