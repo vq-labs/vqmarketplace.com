@@ -1,5 +1,4 @@
 'use strict';
-require('dotenv').config();
 
 const gulp = require('gulp');
 const htmlmin = require('gulp-htmlmin');
@@ -79,21 +78,19 @@ gulp.task('build', function () {
     .pipe(gulp.dest('public'))
 });
 
-gulp.task('deploy', ["build"], function () {
-  const args = ['./**', '--region', 'eu-central-1', '--bucket', 'vqmarketplace.com', '--gzip'];
-  const npm = spawn("s3-deploy", args, {cwd: './public'});
+gulp.task('deploy', function() {
+    const args = [ './**', '--region', 'eu-central-1', '--bucket', 'vqmarketplace.com', '--gzip' ];
+    const npm = spawn("s3-deploy", args, { cwd: './public' });
 
-  npm.stdout.on('data', data => {
-    console.log(`stdout: ${data}`);
-  });
+    npm.stdout.on('data', data => {
+        console.log(`stdout: ${data}`);
+    });
 
-  npm.stderr.on('data', data => {
-    console.log(`stderr: ${data}`);
-  });
+    npm.stderr.on('data', data => {
+        console.log(`stderr: ${data}`);
+    });
 
-  npm.on('close', code => {
-    console.log(code !== 0 ? 'error in build' : 0);
-  });
+    npm.on('close', code => {
+        console.log(code !== 0 ? 'error in build' : 0);
+    });
 });
-
-gulp.task('watch', () => gulp.watch('./src/**/**', ['build']));
