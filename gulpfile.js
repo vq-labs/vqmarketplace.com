@@ -1,4 +1,5 @@
 'use strict';
+require('dotenv').config();
 
 const gulp = require('gulp');
 const htmlmin = require('gulp-htmlmin');
@@ -8,91 +9,91 @@ const fileinclude = require('gulp-file-include');
 const liveServer = require('gulp-live-server');
 const runSequence = require('run-sequence');
 
-const build = (VQ_TENANT_API_URL, env) => {
-    gulp.src([ 'src/**/index.html' ])
-    .pipe(replace({
-        patterns: [
-            {
-                match: 'VQ_TENANT_API_URL',
-                replacement: VQ_TENANT_API_URL
-            },
-            {
-                match: 'VQ_WEB_ENV',
-                replacement: env
-            }
-        ]
-    }))
-    .pipe(fileinclude({
-      prefix: '@@',
-      basepath: '@file'
-    }))
-    .pipe(htmlmin({ collapseWhitespace: true }))
-    .pipe(gulp.dest('public'));
-
-    gulp.src([ 'src/**/*.js' ])
-    .pipe(replace({
-        patterns: [
-            {
-                match: 'VQ_TENANT_API_URL',
-                replacement: VQ_TENANT_API_URL
-            },
-            {
-                match: 'VQ_WEB_ENV',
-                replacement: env
-            }
-        ]
-    }))
-    .pipe(gulp.dest('public'));
-
-  gulp.src([ 'src/**/*.css' ])
-    .pipe(fileinclude({
-      prefix: '@@',
-      basepath: '@file'
-    }))
-    .pipe(gulp.dest('public'))
-
-    gulp.src([ 'assets/**/*' ])
-    .pipe(gulp.dest('public'))
-};
-
-gulp.task('run', function(cb) {
+gulp.task('run', function (cb) {
+  if (process.env.ENV.toLowerCase() === 'production') {
     runSequence(
-        'build:local',
-        'watch:local',
-        'runServer',
-        cb
+      'build',
+      'runServer',
+      cb
     );
+  } else {
+    runSequence(
+      'build',
+      'watch',
+      'runServer',
+      cb
+    );
+  }
 });
 
-gulp.task('runServer', [ "build" ], function() {
-    var server = liveServer.static('./public');
-    server.start();
+gulp.task('runServer', function () {
+  var server = liveServer.static('./public', process.env.PORT);
+  server.start();
 });
 
 // production
-gulp.task('build', () => build('https://vqmarketplace.vqmarketplace.com/api', 'production'));
+gulp.task('build', function () {
+  gulp.src(['src/**/index.html'])
+    .pipe(replace({
+      patterns: [
+        {
+          match: 'VQ_TENANT_API_URL',
+          replacement: process.env.TENANT_API_URL
+        },
+        {
+          match: 'VQ_WEB_ENV',
+          replacement: process.env.ENV
+        }
+      ]
+    }))
+    .pipe(fileinclude({
+      prefix: '@@',
+      basepath: '@file'
+    }))
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('public'));
 
-gulp.task('build:dev', () => build('https://vqmarketplace.vqmarketplace.com/api', 'development'));
+  gulp.src(['src/**/*.js'])
+    .pipe(replace({
+      patterns: [
+        {
+          match: 'VQ_TENANT_API_URL',
+          replacement: process.env.TENANT_API_URL
+        },
+        {
+          match: 'VQ_WEB_ENV',
+          replacement: process.env.ENV
+        }
+      ]
+    }))
+    .pipe(gulp.dest('public'));
 
-gulp.task('build:local', () => build('http://localhost:8081/api', 'local'));
+  gulp.src(['src/**/*.css'])
+    .pipe(fileinclude({
+      prefix: '@@',
+      basepath: '@file'
+    }))
+    .pipe(gulp.dest('public'))
 
-gulp.task('deploy', [  ], function() {
-    const args = [ './**', '--region', 'eu-central-1', '--bucket', 'vqmarketplace.com', '--gzip' ];
-    const npm = spawn("s3-deploy", args, { cwd: './public' });
-
-    npm.stdout.on('data', data => {
-        console.log(`stdout: ${data}`);
-    });
-
-    npm.stderr.on('data', data => {
-        console.log(`stderr: ${data}`);
-    });
-
-    npm.on('close', code => {
-        console.log(code !== 0 ? 'error in build' : 0);
-    });
+  gulp.src(['assets/**/*'])
+    .pipe(gulp.dest('public'))
 });
 
-gulp.task('watch', () => gulp.watch('./src/**/**',  [ 'build' ]));
-gulp.task('watch:dev', () => gulp.watch('./src/**/**',  [ 'build:dev' ]));
-gulp.task('watch:local', () => gulp.watch('./src/**/**',  [ 'build:local' ]));
+gulp.task('deploy', ["build"], function () {
+  const args = ['./**', '--region', 'eu-central-1', '--bucket', 'vqmarketplace.com', '--gzip'];
+  const npm = spawn("s3-deploy", args, {cwd: './public'});
+
+  npm.stdout.on('data', data => {
+    console.log(`stdout: ${data}`);
+  });
+
+  npm.stderr.on('data', data => {
+    console.log(`stderr: ${data}`);
+  });
+
+  npm.on('close', code => {
+    console.log(code !== 0 ? 'error in build' : 0);
+  });
+});
+
+gulp.task('watch', () => gulp.watch('./src/**/**', ['build']));
