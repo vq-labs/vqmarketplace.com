@@ -15,7 +15,11 @@ app.controller("GetStartedController", ($scope, $http, $location) => {
     },
     {
       id: 'products', text: 'Products'
-    }
+    },
+    {
+      id: 'bitcoinmeetup', text: 'Cryptocurrency OTC Exchange'
+    },
+    
   ];
   $scope.referrals = [
     {
