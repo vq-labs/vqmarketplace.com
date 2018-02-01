@@ -12,6 +12,9 @@ app.controller("GetStartedController", ($scope, $http, $location) => {
     },
     {
       id: 'rentals', text: 'Rentals'
+    },
+    {
+      id: 'products', text: 'Products'
     }
   ];
   $scope.referrals = [
