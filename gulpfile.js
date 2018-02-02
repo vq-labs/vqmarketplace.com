@@ -7,6 +7,7 @@ const spawn = require('child_process').spawn;
 const fileinclude = require('gulp-file-include');
 const liveServer = require('gulp-live-server');
 const runSequence = require('run-sequence');
+const babel = require('gulp-babel');
 
 const build = (VQ_TENANT_API_URL, env) => {
     gulp.src([ 'src/**/index.html' ])
@@ -49,6 +50,9 @@ const build = (VQ_TENANT_API_URL, env) => {
                 replacement: env === 'production' || env === 'development' ? 'https://vqmarketplace.com' : 'http://localhost:3000'
             }
         ]
+    }))
+    .pipe(babel({
+        presets: ['env']
     }))
     .pipe(gulp.dest('public'));
 
