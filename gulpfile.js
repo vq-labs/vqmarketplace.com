@@ -52,7 +52,7 @@ const build = (VQ_TENANT_API_URL, env) => {
         ]
     }))
     .pipe(babel({
-        presets: ['env']
+        presets: [ 'env' ]
     }))
     .pipe(gulp.dest('public'));
 

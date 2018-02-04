@@ -365,11 +365,13 @@ app.controller("GetStartedController", ($scope, $http, $location) => {
                 .then((rData) => {
                   let href;
 
+                  debugger;
+
                   if (rData.data.tenant && rData.data.tenant.status === 3) {
                     $scope.data.marketplace.isSubmitting = false;
                     $scope.data.step = 'success';
 
-                    href = 'https://' + rData.data.tenantId + '.vqmarketplace.com/app/admin/get-started'
+                    href = 'https://' + rData.data.tenant.tenantId + '.vqmarketplace.com/app/admin/get-started'
                     /**
                       if (VQ_WEB_ENV === 'production' || VQ_WEB_ENV === 'development') {
                         href = 'https://' + data.tenantId + '.vqmarketplace.com/app/admin/get-started'
