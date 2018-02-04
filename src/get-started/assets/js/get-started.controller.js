@@ -365,8 +365,6 @@ app.controller("GetStartedController", ($scope, $http, $location) => {
                 .then((rData) => {
                   let href;
 
-                  debugger;
-
                   if (rData.data.tenant && rData.data.tenant.status === 3) {
                     $scope.data.marketplace.isSubmitting = false;
                     $scope.data.step = 'success';
