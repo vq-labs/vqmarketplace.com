@@ -198,7 +198,7 @@ app.controller("GetStartedController", ($scope, $http, $location) => {
 
         $scope.data.account.errors = [];
         $scope.data.account.isSubmitting = true;
-
+        
         $http({
           method: "POST",
           url: VQ_TENANT_API_URL + "/trial-registration/step-1",
@@ -345,7 +345,7 @@ app.controller("GetStartedController", ($scope, $http, $location) => {
           url: VQ_TENANT_API_URL + "/trial-registration/step-4",
           data: {
             apiKey: $scope.data.tenant.apiKey,
-            marketplaceName: $scope.data.marketplace.marketplaceName,
+            marketplaceName: $scope.data.marketplace.marketplaceName.replace(/[^a-zA-Z0-9]+/g, ''),
             marketplaceType: $scope.data.marketplace.marketplaceType,
             password: $scope.data.marketplace.password,
             repeatPassword: $scope.data.marketplace.repeatPassword,
@@ -378,7 +378,9 @@ app.controller("GetStartedController", ($scope, $http, $location) => {
                       }
                     */
 
-                    window.location = href; 
+                    setTimeout(function() {
+                      window.location.replace(href);
+                    }, 5000);
                   }
                 })
                 .catch((err) => {
