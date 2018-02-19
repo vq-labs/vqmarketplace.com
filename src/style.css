@@ -605,6 +605,8 @@ ul {
   padding-bottom:40px;
 }
 
+/** START OF PRICING TABLE **/
+
 .price-wrapp{
   position:relative;
   width:100%;
@@ -686,6 +688,7 @@ ul {
   right:0;
   padding:20px 0 ;
 }
+/** END OF PRICING TABLE **/
 
 .vq-footer {
   color:#ffffff;

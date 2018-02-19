@@ -8,6 +8,7 @@ const spawn = require('child_process').spawn;
 const fileinclude = require('gulp-file-include');
 const liveServer = require('gulp-live-server');
 const runSequence = require('run-sequence');
+const babel = require('gulp-babel');
 
 gulp.task('run', function (cb) {
   if (process.env.ENV.toLowerCase() === 'production') {
@@ -66,6 +67,9 @@ gulp.task('build', function () {
           replacement: process.env.WEB_APP_URL
         }
       ]
+    }))
+    .pipe(babel({
+        presets: [ 'env' ]
     }))
     .pipe(gulp.dest('public'));
 

@@ -5,59 +5,74 @@ const app = angular.module("GetStartedApp", ['ngSanitize', 'ui.select']).config(
   });
 });
 
+const COUNTRIES = [
+  {id: 'AD', text: 'Andorra'},
+  {id: 'AT', text: 'Austria'},
+  {id: 'BE', text: 'Belgium'},
+  {id: 'CA', text: 'Canada'},
+  {id: 'CY', text: 'Cyprus'},
+  {id: 'EE', text: 'Estonia'},
+  {id: 'FI', text: 'Finland'},
+  {id: 'FR', text: 'France'},
+  {id: 'DE', text: 'Germany'},
+  {id: 'GR', text: 'Greece'},
+  {id: 'IE', text: 'Ireland'},
+  {id: 'IT', text: 'Italy'},
+  {id: 'LV', text: 'Latvia'},
+  {id: 'LT', text: 'Lithuania'},
+  {id: 'LU', text: 'Luxembourg'},
+  {id: 'MT', text: 'Malta'},
+  {id: 'MC', text: 'Monaco'},
+  {id: 'NL', text: 'Netherlands'},
+  {id: 'PT', text: 'Portugal'},
+  {id: 'SM', text: 'San Marino'},
+  {id: 'SK', text: 'Slovakia'},
+  {id: 'SI', text: 'Slovenia'},
+  {id: 'ES', text: 'Spain'},
+  {id: 'US', text: 'United States'}
+];
+
+const REFERRALS = [
+  {
+    id: 'facebook', text: 'Facebook'
+  },
+  {
+    id: 'google-search', text: 'Google Search'
+  },
+  {
+    id: 'blog', text: 'Blog post'
+  },
+  {
+    id: 'friend-referral', text: 'Friend Referral'
+  },
+  {
+    id: 'conference', text: 'Conference'
+  },
+  {
+    id: 'other', text: 'Other'
+  }
+];
+
+const MARKETPLACE_TYPES = [
+  {
+    id: 'services', text: 'Services'
+  },
+  {
+    id: 'rentals', text: 'Rentals'
+  },
+  {
+    id: 'products', text: 'Products'
+  },
+  {
+    id: 'bitcoinmeetup', text: 'Cryptocurrency OTC Exchange'
+  },
+  
+];
+
 app.controller("GetStartedController", ($scope, $http, $location) => {
-  $scope.marketplaceTypes = [
-    {
-      id: 'services', text: 'Services'
-    },
-    {
-      id: 'rentals', text: 'Rentals'
-    }
-  ];
-  $scope.referrals = [
-    {
-      id: 'facebook', text: 'Facebook'
-    },
-    {
-      id: 'google-search', text: 'Google Search'
-    },
-    {
-      id: 'blog', text: 'Blog post'
-    },
-    {
-      id: 'friend-referral', text: 'Friend Referral'
-    },
-    {
-      id: 'conference', text: 'Conference'
-    },
-    {
-      id: 'other', text: 'Other'
-    }
-  ];
-  $scope.countries = [
-    {id: 'AD', text: 'Andorra'},
-    {id: 'AT', text: 'Austria'},
-    {id: 'BE', text: 'Belgium'},
-    {id: 'CY', text: 'Cyprus'},
-    {id: 'EE', text: 'Estonia'},
-    {id: 'FI', text: 'Finland'},
-    {id: 'FR', text: 'France'},
-    {id: 'DE', text: 'Germany'},
-    {id: 'GR', text: 'Greece'},
-    {id: 'IE', text: 'Ireland'},
-    {id: 'IT', text: 'Italy'},
-    {id: 'LV', text: 'Latvia'},
-    {id: 'LT', text: 'Lithuania'},
-    {id: 'LU', text: 'Luxembourg'},
-    {id: 'MT', text: 'Malta'},
-    {id: 'MC', text: 'Monaco'},
-    {id: 'NL', text: 'Netherlands'},
-    {id: 'PT', text: 'Portugal'},
-    {id: 'SM', text: 'San Marino'},
-    {id: 'SK', text: 'Slovakia'},
-    {id: 'SI', text: 'Slovenia'},
-    {id: 'ES', text: 'Spain'}
-  ];
+  $scope.marketplaceTypes = MARKETPLACE_TYPES;
+  $scope.referrals = REFERRALS;
+  $scope.countries = COUNTRIES;
 
   $scope.data = {
     account: {
@@ -99,7 +114,7 @@ app.controller("GetStartedController", ($scope, $http, $location) => {
     tenant: {}
   };
 
-  $onInit = () => {
+  const onInit = () => {
     if ($location.search().verificationCode) {
       /**
        * Tracking (2/5) - someone submitted an email
@@ -183,7 +198,7 @@ app.controller("GetStartedController", ($scope, $http, $location) => {
 
         $scope.data.account.errors = [];
         $scope.data.account.isSubmitting = true;
-
+        
         $http({
           method: "POST",
           url: VQ_TENANT_API_URL + "/trial-registration/step-1",
@@ -330,7 +345,7 @@ app.controller("GetStartedController", ($scope, $http, $location) => {
           url: VQ_TENANT_API_URL + "/trial-registration/step-4",
           data: {
             apiKey: $scope.data.tenant.apiKey,
-            marketplaceName: $scope.data.marketplace.marketplaceName,
+            marketplaceName: $scope.data.marketplace.marketplaceName.replace(/[^a-zA-Z0-9]+/g, ''),
             marketplaceType: $scope.data.marketplace.marketplaceType,
             password: $scope.data.marketplace.password,
             repeatPassword: $scope.data.marketplace.repeatPassword,
@@ -348,23 +363,24 @@ app.controller("GetStartedController", ($scope, $http, $location) => {
                 }
               })
                 .then((rData) => {
-                  if (rData.data.tenant) {
-                    if (rData.data.tenant.status === 3) {
-                      $scope.data.marketplace.isSubmitting = false;
-                      $scope.data.step = 'success';
-                      setTimeout(() => {
-                        let href;
+                  let href;
 
-                        if (VQ_WEB_APP_URL.toLowerCase() === 'production') {
-                          href = (VQ_WEB_APP_URL + '/app/admin/get-started').replace('?tenantId', data.tenantId)
-                        } else {
-                          href = VQ_WEB_APP_URL + '/app/admin/get-started'
-                        }
+                  if (rData.data.tenant && rData.data.tenant.status === 3) {
+                    $scope.data.marketplace.isSubmitting = false;
+                    $scope.data.step = 'success';
 
-                        window.location = href;
+                    href = 'https://' + rData.data.tenant.tenantId + '.vqmarketplace.com/app/admin/get-started'
+                    /**
+                      if (VQ_WEB_ENV === 'production' || VQ_WEB_ENV === 'development') {
+                        href = 'https://' + data.tenantId + '.vqmarketplace.com/app/admin/get-started'
+                      } else {
+                        href = 'http://localhost:4000/app/admin/get-started'
+                      }
+                    */
 
-                      }, 5000)
-                    }
+                    setTimeout(function() {
+                      window.location.replace(href);
+                    }, 5000);
                   }
                 })
                 .catch((err) => {
@@ -396,5 +412,5 @@ app.controller("GetStartedController", ($scope, $http, $location) => {
     }
   };
 
-  $onInit();
+  onInit();
 });
