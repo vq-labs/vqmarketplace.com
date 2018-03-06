@@ -129,6 +129,7 @@
 
     @@include('../styles.html')
     @@include('../analytics-code.html')
+    @@include('../gtm-code.html')
 
     <!-- Facebook Pixel Code -->
 		<script>
@@ -153,8 +154,9 @@
 	</head>
 
 		<body>
+      @@include('../gtm-iframe-code.html')
 		  <div class="wrap">
-		  	@@include('../header.html')
+		  @@include('../header.html')
 				
                <div class="container-fluid vq-intro" style="background-color:#000639;padding-left:0; padding-right:0; margin-top:0px; height:250px;">
                     <div class="text-center" style="position:absolute;width: 100%; z-index:30; top:0;">
