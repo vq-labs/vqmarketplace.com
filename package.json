@@ -49,7 +49,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm install && npm run build"
+      "post-receive": "npm install && npm run build"
     }
   }
 }
