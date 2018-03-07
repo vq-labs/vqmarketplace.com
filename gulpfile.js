@@ -10,6 +10,8 @@ const liveServer = require('gulp-live-server');
 const runSequence = require('run-sequence');
 const babel = require('gulp-babel');
 
+console.log('test');
+
 gulp.task('run', function (cb) {
   if (process.env.ENV.toLowerCase() === 'production') {
     runSequence(
