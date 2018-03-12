@@ -60,12 +60,14 @@ const MARKETPLACE_TYPES = [
   {
     id: 'rentals', text: 'Rentals'
   },
+/*
+  27022018 - Sercan: disabled until further notice when we stabilize the app for services and rentals
   {
     id: 'products', text: 'Products'
   },
   {
     id: 'bitcoinmeetup', text: 'Cryptocurrency OTC Exchange'
-  },
+  }, */
   
 ];
 
