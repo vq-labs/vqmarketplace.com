@@ -17,6 +17,7 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "dotenv": "^4.0.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
     "gulp-file-include": "^1.2.0",
@@ -31,16 +32,18 @@
     "s3-deploy": "^0.8.0"
   },
   "scripts": {
-    "start": "gulp run:prod",
-    "start:dev": "gulp run:dev",
-    "start:local": "gulp run:local",
-    "aws-config": "source ~/.bash_profile",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./node_modules/gulp/bin/gulp.js run",
+    "build": "node ./node_modules/gulp/bin/gulp.js build",
+    "aws-config": "source ~/.bash_profile"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/vq-labs/viciqloud.com"
   },
   "author": "VQ LABS",
-  "license": "UNLICENCED"
+  "license": "UNLICENCED",
+  "engines": {
+    "node": "~8.3.0",
+    "npm": "~5.6.0"
+  }
 }

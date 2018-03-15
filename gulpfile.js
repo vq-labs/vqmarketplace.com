@@ -1,4 +1,5 @@
 'use strict';
+require('dotenv').config();
 
 const gulp = require('gulp');
 const htmlmin = require('gulp-htmlmin');
@@ -9,99 +10,72 @@ const liveServer = require('gulp-live-server');
 const runSequence = require('run-sequence');
 const babel = require('gulp-babel');
 
-const build = (VQ_TENANT_API_URL, env) => {
-    gulp.src([ 'src/**/index.html' ])
+console.log('test');
+
+gulp.task('run', function (cb) {
+  if (process.env.ENV.toLowerCase() === 'production') {
+    runSequence(
+      'build',
+      'runServer',
+      cb
+    );
+  } else {
+    runSequence(
+      'build',
+      'watch',
+      'runServer',
+      cb
+    );
+  }
+});
+
+gulp.task('runServer', function () {
+  var server = liveServer.static('./public', process.env.PORT);
+  server.start();
+});
+
+// production
+gulp.task('build', function () {
+
+  gulp.src(['src/**/index.html'])
     .pipe(replace({
-        patterns: [
-            {
-                match: 'VQ_TENANT_API_URL',
-                replacement: VQ_TENANT_API_URL
-            },
-            {
-                match: 'VQ_WEB_ENV',
-                replacement: env
-            },
-            {
-                match: 'VQ_WEB_URL',
-                replacement: env === 'production' || env === 'development' ? 'https://vqmarketplace.com' : 'http://localhost:3000'
-            }
-        ]
+      patterns: [
+        {
+          match: 'VQ_TENANT_API_URL',
+          replacement: process.env.TENANT_API_URL
+        }
+      ]
     }))
     .pipe(fileinclude({
       prefix: '@@',
       basepath: '@file'
     }))
-    .pipe(htmlmin({ collapseWhitespace: true }))
+    .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest('public'));
 
-    gulp.src([ 'src/**/*.js' ])
+  gulp.src(['src/**/*.js'])
     .pipe(replace({
-        patterns: [
-            {
-                match: 'VQ_TENANT_API_URL',
-                replacement: VQ_TENANT_API_URL
-            },
-            {
-                match: 'VQ_WEB_ENV',
-                replacement: env
-            },
-            {
-                match: 'VQ_WEB_URL',
-                replacement: env === 'production' || env === 'development' ? 'https://vqmarketplace.com' : 'http://localhost:3000'
-            }
-        ]
+      patterns: [
+        {
+          match: 'VQ_TENANT_API_URL',
+          replacement: process.env.TENANT_API_URL
+        }
+      ]
     }))
     .pipe(babel({
         presets: [ 'env' ]
     }))
     .pipe(gulp.dest('public'));
 
-    gulp.src([ 'src/**/*.css' ])
+  gulp.src(['src/**/*.css'])
     .pipe(fileinclude({
       prefix: '@@',
       basepath: '@file'
     }))
     .pipe(gulp.dest('public'))
 
-    gulp.src([ 'assets/**/*' ])
+  gulp.src(['assets/**/*'])
     .pipe(gulp.dest('public'))
-};
-
-gulp.task('run:prod', function(cb) {
-    runSequence(
-        'build:prod',
-        'runServer',
-        cb
-    );
-});
-gulp.task('run:dev', function(cb) {
-    runSequence(
-        'build:dev',
-        'watch:dev',
-        'runServer',
-        cb
-    );
-});
-gulp.task('run:local', function(cb) {
-    runSequence(
-        'build:local',
-        'watch:local',
-        'runServer',
-        cb
-    );
-});
-
-gulp.task('build:prod', () => build('https://vqmarketplace.vqmarketplace.com/api', 'production'));
-gulp.task('build:dev', () => build('https://vqmarketplace.vqmarketplace.com/api', 'development'));
-gulp.task('build:local', () => build('http://localhost:8081/api', 'local'));
-
-gulp.task('watch:prod', () => gulp.watch('./src/**/**',  [ 'build:prod' ]));
-gulp.task('watch:dev', () => gulp.watch('./src/**/**',  [ 'build:dev' ]));
-gulp.task('watch:local', () => gulp.watch('./src/**/**',  [ 'build:local' ]));
-
-gulp.task('runServer', function() {
-    var server = liveServer.static('./public');
-    server.start();
 });
 
 gulp.task('deploy', function() {
