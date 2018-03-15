@@ -43,10 +43,6 @@ gulp.task('build', function () {
         {
           match: 'VQ_TENANT_API_URL',
           replacement: process.env.TENANT_API_URL
-        },
-        {
-          match: 'VQ_WEB_APP_URL',
-          replacement: process.env.WEB_APP_URL
         }
       ]
     }))
@@ -63,10 +59,6 @@ gulp.task('build', function () {
         {
           match: 'VQ_TENANT_API_URL',
           replacement: process.env.TENANT_API_URL
-        },
-        {
-          match: 'VQ_WEB_APP_URL',
-          replacement: process.env.WEB_APP_URL
         }
       ]
     }))
