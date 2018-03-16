@@ -1,0 +1,45 @@
+<div ng-app="vqHeader" ng-controller="HeaderCtrl as header">
+    <md-sidenav id="vq-header-sidenav" class="hidden md-sidenav-right" md-component-id="right" md-disable-backdrop md-whiteframe="4">
+        <md-content style="margin-top:50px;">
+                <md-list-item class="md-1-line">
+                    <a href="https://vqmarketplace.com/whitepaper.pdf"><h5>Whitepaper</h5></a>
+                </md-list-item>
+                <md-list-item class="md-1-line">
+                    <a href="/contact"><h5>Contact Us</h5></a>
+                </md-list-item>
+            </md-list>  
+        </md-content>   
+    </md-sidenav>
+    <nav class="navbar navbar-default navbar-fixed-top" style="background-color:#ffffff;padding-bottom:10px;padding-top:5px;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" class="active" href="/">
+                    <img style="padding: 5px; padding-top:0px; height: 45px;" class="visible-xs" src="/vq-labs-logo-xs-2.png"/>
+                    <img style="padding: 5px; padding-top:0px; height: 40px;" class="hidden-xs" src="/vq-labs-logo-xs-2.png"/>
+                </a>
+
+                <button type="button" class="navbar-toggle collapsed pull-right" ng-click="header.toggle()">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>      
+                        <a target="_blank" href="https://vqmarketplace.com/whitepaper.pdf">
+                            <span style="color:#000000;">Whitepaper</span>
+                        </a>
+                    </li> 
+                    <li class="pr-1">
+                        <a href="mailto:info@vq-labs.com" class="vq-button header-button">
+                            Contact Us
+                        </a>  
+                    </li>   
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
